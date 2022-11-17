@@ -6,4 +6,4 @@ on:
 
 jobs:
   call-add-inprogress-workflow:
-    uses: 14A-A-Lyedlik-Devs/futar-frontend/.github/workflows/ADD_INPROGRESS_STATUS.yml@v1
+    uses: 14A-A-Lyedlik-Devs/futar-frontend/.github/workflows/ADD_INPROGRESS_STATUS.yml@main
