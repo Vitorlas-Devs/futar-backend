@@ -1,0 +1,9 @@
+name: Add ✴️Todo
+
+on:
+  issues:
+    types: [milestoned]
+
+jobs:
+  call-add-inprogress-workflow:
+    uses: 14A-A-Lyedlik-Devs/futar-frontend/.github/workflows/ADD_TODO_STATUS.yml
