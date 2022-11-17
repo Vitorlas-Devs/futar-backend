@@ -1,0 +1,9 @@
+name: Add 🅿️In Progress
+
+on:
+  issues:
+    types: [assigned]
+
+jobs:
+  call-add-inprogress-workflow:
+    uses: 14A-A-Lyedlik-Devs/futar-frontend/.github/workflows/ADD_INPROGRESS_STATUS.yml
