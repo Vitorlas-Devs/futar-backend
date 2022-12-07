@@ -1,0 +1,368 @@
+[
+	{
+		"_id": 0,
+		"nap": 1,
+		"sorszám": 7,
+		"megtettÚt": 14
+	},
+	{
+		"_id": 1,
+		"nap": 3,
+		"sorszám": 3,
+		"megtettÚt": 10
+	},
+	{
+		"_id": 2,
+		"nap": 1,
+		"sorszám": 1,
+		"megtettÚt": 3
+	},
+	{
+		"_id": 3,
+		"nap": 1,
+		"sorszám": 2,
+		"megtettÚt": 3
+	},
+	{
+		"_id": 4,
+		"nap": 1,
+		"sorszám": 3,
+		"megtettÚt": 1
+	},
+	{
+		"_id": 5,
+		"nap": 1,
+		"sorszám": 4,
+		"megtettÚt": 9
+	},
+	{
+		"_id": 6,
+		"nap": 1,
+		"sorszám": 5,
+		"megtettÚt": 5
+	},
+	{
+		"_id": 7,
+		"nap": 1,
+		"sorszám": 6,
+		"megtettÚt": 2
+	},
+	{
+		"_id": 8,
+		"nap": 1,
+		"sorszám": 8,
+		"megtettÚt": 9
+	},
+	{
+		"_id": 9,
+		"nap": 1,
+		"sorszám": 9,
+		"megtettÚt": 8
+	},
+	{
+		"_id": 10,
+		"nap": 1,
+		"sorszám": 10,
+		"megtettÚt": 5
+	},
+	{
+		"_id": 11,
+		"nap": 1,
+		"sorszám": 11,
+		"megtettÚt": 6
+	},
+	{
+		"_id": 12,
+		"nap": 3,
+		"sorszám": 1,
+		"megtettÚt": 7
+	},
+	{
+		"_id": 13,
+		"nap": 3,
+		"sorszám": 2,
+		"megtettÚt": 7
+	},
+	{
+		"_id": 14,
+		"nap": 3,
+		"sorszám": 4,
+		"megtettÚt": 2
+	},
+	{
+		"_id": 15,
+		"nap": 3,
+		"sorszám": 5,
+		"megtettÚt": 4
+	},
+	{
+		"_id": 16,
+		"nap": 3,
+		"sorszám": 6,
+		"megtettÚt": 6
+	},
+	{
+		"_id": 17,
+		"nap": 3,
+		"sorszám": 7,
+		"megtettÚt": 3
+	},
+	{
+		"_id": 18,
+		"nap": 3,
+		"sorszám": 8,
+		"megtettÚt": 5
+	},
+	{
+		"_id": 19,
+		"nap": 3,
+		"sorszám": 9,
+		"megtettÚt": 8
+	},
+	{
+		"_id": 20,
+		"nap": 3,
+		"sorszám": 10,
+		"megtettÚt": 1
+	},
+	{
+		"_id": 21,
+		"nap": 3,
+		"sorszám": 11,
+		"megtettÚt": 4
+	},
+	{
+		"_id": 22,
+		"nap": 3,
+		"sorszám": 12,
+		"megtettÚt": 2
+	},
+	{
+		"_id": 23,
+		"nap": 3,
+		"sorszám": 13,
+		"megtettÚt": 3
+	},
+	{
+		"_id": 24,
+		"nap": 3,
+		"sorszám": 14,
+		"megtettÚt": 5
+	},
+	{
+		"_id": 25,
+		"nap": 3,
+		"sorszám": 15,
+		"megtettÚt": 2
+	},
+	{
+		"_id": 26,
+		"nap": 4,
+		"sorszám": 4,
+		"megtettÚt": 28
+	},
+	{
+		"_id": 27,
+		"nap": 4,
+		"sorszám": 1,
+		"megtettÚt": 11
+	},
+	{
+		"_id": 28,
+		"nap": 4,
+		"sorszám": 2,
+		"megtettÚt": 2
+	},
+	{
+		"_id": 29,
+		"nap": 4,
+		"sorszám": 3,
+		"megtettÚt": 3
+	},
+	{
+		"_id": 30,
+		"nap": 4,
+		"sorszám": 5,
+		"megtettÚt": 7
+	},
+	{
+		"_id": 31,
+		"nap": 4,
+		"sorszám": 6,
+		"megtettÚt": 11
+	},
+	{
+		"_id": 32,
+		"nap": 5,
+		"sorszám": 1,
+		"megtettÚt": 2
+	},
+	{
+		"_id": 33,
+		"nap": 5,
+		"sorszám": 2,
+		"megtettÚt": 5
+	},
+	{
+		"_id": 34,
+		"nap": 5,
+		"sorszám": 3,
+		"megtettÚt": 2
+	},
+	{
+		"_id": 35,
+		"nap": 5,
+		"sorszám": 4,
+		"megtettÚt": 6
+	},
+	{
+		"_id": 36,
+		"nap": 5,
+		"sorszám": 5,
+		"megtettÚt": 2
+	},
+	{
+		"_id": 37,
+		"nap": 5,
+		"sorszám": 6,
+		"megtettÚt": 3
+	},
+	{
+		"_id": 38,
+		"nap": 5,
+		"sorszám": 7,
+		"megtettÚt": 2
+	},
+	{
+		"_id": 39,
+		"nap": 5,
+		"sorszám": 8,
+		"megtettÚt": 6
+	},
+	{
+		"_id": 40,
+		"nap": 5,
+		"sorszám": 9,
+		"megtettÚt": 2
+	},
+	{
+		"_id": 41,
+		"nap": 5,
+		"sorszám": 10,
+		"megtettÚt": 2
+	},
+	{
+		"_id": 42,
+		"nap": 5,
+		"sorszám": 11,
+		"megtettÚt": 4
+	},
+	{
+		"_id": 43,
+		"nap": 5,
+		"sorszám": 12,
+		"megtettÚt": 2
+	},
+	{
+		"_id": 44,
+		"nap": 5,
+		"sorszám": 13,
+		"megtettÚt": 2
+	},
+	{
+		"_id": 45,
+		"nap": 5,
+		"sorszám": 14,
+		"megtettÚt": 4
+	},
+	{
+		"_id": 46,
+		"nap": 5,
+		"sorszám": 15,
+		"megtettÚt": 4
+	},
+	{
+		"_id": 47,
+		"nap": 5,
+		"sorszám": 16,
+		"megtettÚt": 5
+	},
+	{
+		"_id": 48,
+		"nap": 5,
+		"sorszám": 21,
+		"megtettÚt": 2
+	},
+	{
+		"_id": 49,
+		"nap": 5,
+		"sorszám": 17,
+		"megtettÚt": 7
+	},
+	{
+		"_id": 50,
+		"nap": 5,
+		"sorszám": 18,
+		"megtettÚt": 2
+	},
+	{
+		"_id": 51,
+		"nap": 5,
+		"sorszám": 19,
+		"megtettÚt": 3
+	},
+	{
+		"_id": 52,
+		"nap": 7,
+		"sorszám": 1,
+		"megtettÚt": 5
+	},
+	{
+		"_id": 53,
+		"nap": 7,
+		"sorszám": 2,
+		"megtettÚt": 12
+	},
+	{
+		"_id": 54,
+		"nap": 7,
+		"sorszám": 8,
+		"megtettÚt": 25
+	},
+	{
+		"_id": 55,
+		"nap": 7,
+		"sorszám": 3,
+		"megtettÚt": 6
+	},
+	{
+		"_id": 56,
+		"nap": 7,
+		"sorszám": 4,
+		"megtettÚt": 6
+	},
+	{
+		"_id": 57,
+		"nap": 7,
+		"sorszám": 5,
+		"megtettÚt": 6
+	},
+	{
+		"_id": 58,
+		"nap": 7,
+		"sorszám": 6,
+		"megtettÚt": 9
+	},
+	{
+		"_id": 59,
+		"nap": 7,
+		"sorszám": 7,
+		"megtettÚt": 6
+	},
+	{
+		"_id": 60,
+		"nap": 5,
+		"sorszám": 20,
+		"megtettÚt": 7
+	}
+]
