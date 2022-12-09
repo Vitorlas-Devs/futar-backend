@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { Types } from "mongoose";
-import Controller from "../interfaces/controller.interface";
+import IController from "../interfaces/controller.interface";
+import IRequestWithUser from "../interfaces/requestWithUser.interface";
 import authMiddleware from "../middleware/auth.middleware";
 import validationMiddleware from "../middleware/validation.middleware";
 import CreateUserDto from "./user.dto";
@@ -8,18 +9,22 @@ import UserNotFoundException from "../exceptions/UserNotFoundException";
 import IdNotValidException from "../exceptions/IdNotValidException";
 import HttpException from "../exceptions/HttpException";
 import userModel from "./user.model";
-import User from "./user.interface";
+import postModel from "../post/post.model";
+import IUser from "./user.interface";
 
-export default class UserController implements Controller {
+export default class UserController implements IController {
     public path = "/users";
     public router = Router();
     private user = userModel;
+    private post = postModel;
 
     constructor() {
         this.initializeRoutes();
     }
 
     private initializeRoutes() {
+        this.router.get(`${this.path}/posts/:id`, authMiddleware, this.getAllPostsOfUserByID);
+        this.router.get(`${this.path}/posts/`, authMiddleware, this.getAllPostsOfLoggedUser);
         this.router.get(`${this.path}/:id`, authMiddleware, this.getUserById);
         this.router.get(this.path, authMiddleware, this.getAllUsers);
 
@@ -64,7 +69,7 @@ export default class UserController implements Controller {
         try {
             const id = req.params.id;
             if (Types.ObjectId.isValid(id)) {
-                const userData: User = req.body;
+                const userData: IUser = req.body;
                 const user = await this.user.findByIdAndUpdate(id, userData, { new: true });
                 if (user) {
                     res.send(user);
@@ -91,6 +96,30 @@ export default class UserController implements Controller {
                 }
             } else {
                 next(new IdNotValidException(id));
+            }
+        } catch (error) {
+            next(new HttpException(400, error.message));
+        }
+    };
+
+    private getAllPostsOfLoggedUser = async (req: IRequestWithUser, res: Response, next: NextFunction) => {
+        try {
+            const id = req.user._id; // Stored user's ID in Cookie
+            const posts = await this.post.find({ author: id });
+            res.send(posts);
+        } catch (error) {
+            next(new HttpException(400, error.message));
+        }
+    };
+
+    private getAllPostsOfUserByID = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            if (Types.ObjectId.isValid(req.params.id)) {
+                const id: string = req.params.id;
+                const posts = await this.post.find({ author: id });
+                res.send(posts);
+            } else {
+                next(new IdNotValidException(req.params.id));
             }
         } catch (error) {
             next(new HttpException(400, error.message));

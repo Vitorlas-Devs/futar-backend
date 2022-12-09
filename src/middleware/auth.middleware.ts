@@ -1,29 +1,23 @@
+import SessionExpiredException from "./../exceptions/SessionExpiredException";
 import { NextFunction, Response } from "express";
-import jwt from "jsonwebtoken";
-import AuthenticationTokenMissingException from "../exceptions/AuthenticationTokenMissingException";
-import WrongAuthenticationTokenException from "../exceptions/WrongAuthenticationTokenException";
-import DataStoredInToken from "../interfaces/dataStoredInToken";
-import RequestWithUser from "../interfaces/requestWithUser.interface";
-import userModel from "../user/user.model";
+import ISession from "./../interfaces/session.interface";
+import IRequestWithUser from "./../interfaces/requestWithUser.interface";
+import userModel from "./../user/user.model";
 
-export default async function authMiddleware(req: RequestWithUser, res: Response, next: NextFunction): Promise<void> {
-    const cookies = req.cookies;
-    if (cookies && cookies.Authorization) {
-        const secret = process.env.JWT_SECRET;
+export default async function authMiddleware(req: IRequestWithUser, res: Response, next: NextFunction): Promise<void> {
+    if (req.session.id && (req.session as ISession).user_id) {
         try {
-            const verificationResponse = jwt.verify(cookies.Authorization, secret) as DataStoredInToken;
-            const id = verificationResponse._id;
-            const user = await userModel.findById(id);
+            const user = await userModel.findById((req.session as ISession).user_id);
             if (user) {
                 req.user = user;
                 next();
             } else {
-                next(new WrongAuthenticationTokenException());
+                next(new SessionExpiredException());
             }
         } catch (error) {
-            next(new WrongAuthenticationTokenException());
+            next(new SessionExpiredException());
         }
     } else {
-        next(new AuthenticationTokenMissingException());
+        next(new SessionExpiredException());
     }
 }

@@ -1,17 +1,19 @@
-import favicon from "serve-favicon";
-import path from "path";
 import cookieParser from "cookie-parser";
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import Controller from "./interfaces/controller.interface";
+import IController from "./interfaces/controller.interface";
 import errorMiddleware from "./middleware/error.middleware";
+import session from "express-session";
+import MongoStore from "connect-mongo";
 import morgan from "morgan";
+import { config } from "dotenv";
 
 export default class App {
     public app: express.Application;
 
-    constructor(controllers: Controller[]) {
+    constructor(controllers: IController[]) {
+        config(); // Read and set variables from .env file.
         this.app = express();
         this.connectToTheDatabase();
         this.initializeMiddlewares();
@@ -30,51 +32,63 @@ export default class App {
     }
 
     private initializeMiddlewares() {
-        try {
-            this.app.use(favicon(path.join(__dirname, "../favicon.ico")));
-        } catch (error) {
-            console.log(error.message);
-        }
-        this.app.use(express.json());
-        this.app.use(cookieParser());
+        this.app.use(express.json()); // body-parser middleware
+        this.app.use(cookieParser()); // cookie-parser middleware
 
-        // set and use cors
-        // const myCorsOptions: cors.CorsOptions = {
-        //     origin: ["https://epitmenyado.netlify.app", "http://localhost:8080", "http://127.0.0.1:8080"],
-        //     allowedHeaders: ["Content-Type", "Authorization", "Set-Cookie", "Cache-Control", "Content-Language", "Expires", "Last-Modified", "Pragma"],
-        //     exposedHeaders: ["Set-Cookie"],
-        //     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        //     credentials: true,
-        // };
-        const myCorsOptions: cors.CorsOptions = {
-            origin: ["https://epitmenyado.netlify.app", "http://localhost:8080", "http://127.0.0.1:8080"],
-            credentials: true,
+        // Enabled CORS:
+        this.app.use(
+            cors({
+                origin: ["https://minimal-dialogs.netlify.app", "https://jedlik-vite-quasar-template.netlify.app", "https://jedlik-vite-ts-template.netlify.app", "http://localhost:8080", "http://127.0.0.1:8080"],
+                allowedHeaders: ["Content-Type", "Authorization", "Set-Cookie", "Cache-Control", "Content-Language", "Expires", "Last-Modified", "Pragma"],
+                credentials: true,
+                exposedHeaders: ["Set-Cookie"],
+            }),
+        );
+
+        this.app.set("trust proxy", 1); // trust first proxy (If you have your node.js behind a proxy and are using secure: true, you need to set "trust proxy" in express)
+
+        // Session management:
+        // https://javascript.plainenglish.io/session-management-in-a-nodejs-express-app-with-mongodb-19f52c392dad
+
+        // session options for deployment:
+        const mySessionOptions: session.SessionOptions = {
+            secret: process.env.SESSION_SECRET,
+            rolling: true,
+            resave: true,
+            saveUninitialized: false,
+            cookie: { secure: true, httpOnly: true, sameSite: "none", maxAge: 1000 * 60 * +process.env.MAX_AGE_MIN },
+            store: MongoStore.create({
+                mongoUrl: process.env.MONGO_URI,
+                dbName: "BackendTemplateDB",
+                stringify: false,
+            }),
         };
-        this.app.use(cors(myCorsOptions));
-
-        // trust first proxy (If you have your node.js behind a proxy and are using secure: true,
-        // you need to set "trust proxy" in express)
-        this.app.set("trust proxy", 1);
+        if (["development", "test"].includes(process.env.NODE_ENV)) {
+            mySessionOptions.cookie.secure = false;
+            mySessionOptions.cookie.sameSite = "lax";
+        }
+        this.app.use(session(mySessionOptions));
 
         // Logger:
-        if (process.env.NODE_ENV === "development") this.app.use(morgan(":method :url status=:status :date[iso] rt=:response-time ms"));
-        if (process.env.NODE_ENV === "deployment") this.app.use(morgan("tiny"));
+        if (["development", "test"].includes(process.env.NODE_ENV)) this.app.use(morgan(":method :url status=:status :date[iso] rt=:response-time ms"));
+        if (process.env.NODE_ENV == "deployment") this.app.use(morgan("tiny"));
     }
 
     private initializeErrorHandling() {
         this.app.use(errorMiddleware);
     }
 
-    private initializeControllers(controllers: Controller[]) {
+    private initializeControllers(controllers: IController[]) {
         controllers.forEach(controller => {
             this.app.use("/", controller.router);
         });
     }
 
     private connectToTheDatabase() {
-        const { MONGO_USER, MONGO_PASSWORD, MONGO_PATH, MONGO_DB } = process.env;
+        const { MONGO_URI, MONGO_DB } = process.env;
         // Connect to MongoDB Atlas, create database if not exist::
-        mongoose.connect(`mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}${MONGO_DB}?retryWrites=true&w=majority`, err => {
+        mongoose.set("strictQuery", true); // for disable DeprecationWarning
+        mongoose.connect(MONGO_URI, { dbName: MONGO_DB }, err => {
             if (err) {
                 console.log("Unable to connect to the server. Please start MongoDB.");
             }
