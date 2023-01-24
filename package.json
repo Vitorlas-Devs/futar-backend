@@ -6,7 +6,7 @@
     "repository": {
         "private": false,
         "type": "git",
-        "url": "https://github.com/nitslaszlo/jedlik-express-mongoose-ts-backend-template"
+        "url": "https://github.com/14A-A-Lyedlik-Devs/futar-backend"
     },
     "scripts": {
         "start": "node ./dist/server.js",
@@ -18,7 +18,7 @@
         "lint": "eslint ./src --ext .vue,.js,.ts",
         "lint-fix": "eslint --fix ./src --ext .vue,.js,.ts"
     },
-    "author": "Nits László",
+    "author": "Lyedlik",
     "license": "MIT",
     "dependencies": {
         "cors": "^2.8.5",
