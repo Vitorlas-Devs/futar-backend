@@ -1,7 +1,7 @@
 {
-    "name": "jedlik-express-mongoose-ts-backend-template",
+    "name": "futar-backend",
     "version": "1.0.0",
-    "description": "Jedlik project template for backend exam.",
+    "description": "Backend a futár feladathoz",
     "main": "src/server.ts",
     "repository": {
         "private": false,
