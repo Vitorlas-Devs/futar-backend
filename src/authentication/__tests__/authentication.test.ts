@@ -1,15 +1,11 @@
 import "dotenv/config";
 import App from "../../app";
 import AuthenticationController from "../../authentication/authentication.controller";
-// import PostController from "../../post/post.controller";
-// import ReportController from "../../report/report.controller";
-// import UserController from "../../user/user.controller";
 import request from "supertest";
 
 let server: Express.Application;
 
 beforeAll(async () => {
-    // server = new App([new PostController(), new AuthenticationController(), new UserController(), new ReportController()]).getServer();
     server = new App([new AuthenticationController()]).getServer();
 });
 
@@ -20,7 +16,7 @@ describe("test API endpoints", () => {
             .send({
                 name: "student001",
                 email: "student001@jedlik.eu",
-                email_verifed: true,
+                email_verified: true,
                 auto_login: true,
                 picture: "none",
                 roles: ["admin"],

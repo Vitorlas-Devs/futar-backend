@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ArrayNotEmpty, IsArray, IsNotEmpty, IsString, IsUrl } from "class-validator";
+import IRecipe from "./recipe.interface";
 
-export default class CreateRecipeDto {
+export default class CreateRecipeDto implements IRecipe {
     @IsNotEmpty()
     @IsString()
     public recipeName: string;

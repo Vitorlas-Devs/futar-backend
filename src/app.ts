@@ -27,21 +27,20 @@ export default class App {
         });
     }
 
+    // only use in tests
     public getServer(): express.Application {
         return this.app;
     }
 
     private initializeMiddlewares() {
-        this.app.use(express.json()); // body-parser middleware
-        this.app.use(cookieParser()); // cookie-parser middleware
+        this.app.use(express.json()); // body-parser middleware, for read requests body
+        this.app.use(cookieParser()); // cookie-parser middleware, for read requests cookies
 
-        // Enabled CORS:
+        // Enabled CORS (Cross-Origin Resource Sharing):
         this.app.use(
             cors({
                 origin: ["https://minimal-dialogs.netlify.app", "https://jedlik-vite-quasar-template.netlify.app", "https://jedlik-vite-ts-template.netlify.app", "http://localhost:8080", "http://127.0.0.1:8080"],
-                allowedHeaders: ["Content-Type", "Authorization", "Set-Cookie", "Cache-Control", "Content-Language", "Expires", "Last-Modified", "Pragma"],
                 credentials: true,
-                exposedHeaders: ["Set-Cookie"],
             }),
         );
 
@@ -59,10 +58,11 @@ export default class App {
             cookie: { secure: true, httpOnly: true, sameSite: "none", maxAge: 1000 * 60 * +process.env.MAX_AGE_MIN },
             store: MongoStore.create({
                 mongoUrl: process.env.MONGO_URI,
-                dbName: "BackendTemplateDB",
+                dbName: "FutarDB",
                 stringify: false,
             }),
         };
+        // modify session options for development:
         if (["development", "test"].includes(process.env.NODE_ENV)) {
             mySessionOptions.cookie.secure = false;
             mySessionOptions.cookie.sameSite = "lax";

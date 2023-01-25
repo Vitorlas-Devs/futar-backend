@@ -28,6 +28,7 @@ export default class AuthenticationController implements IController {
         this.router.post(`${this.path}/register`, validationMiddleware(CreateUserDto), this.registration);
         this.router.post(`${this.path}/login`, validationMiddleware(LogInDto), this.login);
         this.router.post(`${this.path}/autologin`, this.autoLogin);
+        this.router.post(`${this.path}/closeapp`, this.closeApp);
         this.router.post(`${this.path}/logout`, this.logout);
         this.router.post(`${this.path}/google`, this.loginAndRegisterWithGoogle);
     }
@@ -63,17 +64,23 @@ export default class AuthenticationController implements IController {
     };
 
     private autoLogin = async (req: IRequestWithUser, res: Response, next: NextFunction) => {
-        if (req.session.id && (req.session as ISession).user_id) {
+        if (req.session.id && (req.session as ISession).isAutoLogin) {
             const user: IUser = await userModel.findById((req.session as ISession).user_id);
-            req.sessionStore.get(req.session.id, (error, s: ISession) => {
-                if (error || !s.user_email) {
-                    next(new HttpException(404, "Please log in!"));
-                }
-                if (user && s.user_email) {
-                    (req.session as ISession).isLoggedIn = true;
-                    res.send(user);
-                }
-            });
+            if (user) {
+                (req.session as ISession).isLoggedIn = true;
+                res.send(user);
+            } else {
+                next(new HttpException(404, "Please log in!"));
+            }
+            // req.sessionStore.get(req.session.id, (error, s: ISession) => {
+            //     if (error || !s.user_email) {
+            //         next(new HttpException(404, "Please log in!"));
+            //     }
+            //     if (user && s.user_email) {
+            //         (req.session as ISession).isLoggedIn = true;
+            //         res.send(user);
+            //     }
+            // });
         } else {
             next(new HttpException(404, "Please log in!"));
         }
@@ -107,6 +114,13 @@ export default class AuthenticationController implements IController {
         } catch (error: any) {
             next(new HttpException(400, error.message));
         }
+    };
+
+    private closeApp = (req: Request, res: Response) => {
+        if (req.session.id && (req.session as ISession).isAutoLogin) {
+            (req.session as ISession).isLoggedIn = false;
+            res.sendStatus(200);
+        } else this.logout(req, res);
     };
 
     private logout = (req: Request, res: Response) => {
