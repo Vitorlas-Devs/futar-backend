@@ -1,12 +1,12 @@
 {
-    "name": "jedlik-express-mongoose-ts-backend-template",
+    "name": "futar-backend",
     "version": "1.0.0",
-    "description": "Jedlik project template for backend programming.",
+    "description": "Backend a futár feladathoz",
     "main": "src/server.ts",
     "repository": {
         "private": false,
         "type": "git",
-        "url": "https://github.com/nitslaszlo/jedlik-express-mongoose-ts-backend-template"
+        "url": "https://github.com/14A-A-Lyedlik-Devs/futar-backend"
     },
     "scripts": {
         "start": "node ./dist/server.js",
@@ -19,7 +19,7 @@
         "lint-fix": "eslint --fix ./src --ext .vue,.js,.ts",
         "test": "jest || ECHO."
     },
-    "author": "Nits László",
+    "author": "Lyedlik",
     "license": "MIT",
     "dependencies": {
         "bcrypt": "^5.1.0",

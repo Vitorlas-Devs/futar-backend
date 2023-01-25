@@ -58,7 +58,7 @@ export default class App {
             cookie: { secure: true, httpOnly: true, sameSite: "none", maxAge: 1000 * 60 * +process.env.MAX_AGE_MIN },
             store: MongoStore.create({
                 mongoUrl: process.env.MONGO_URI,
-                dbName: "BackendTemplateDB",
+                dbName: "FutarDB",
                 stringify: false,
             }),
         };
