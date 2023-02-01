@@ -116,7 +116,7 @@
 		"nap": 3,
 		"sorszám": 7,
 		"megtettÚt": 3,
-		"fizetésId": 3
+		"fizetésId": 2
 	},
 	{
 		"_id": 18,
@@ -425,6 +425,7 @@
 		"_id": 61,
 		"nap": 1,
 		"sorszám": 7,
-		"megtettÚt": 14
+		"megtettÚt": 14,
+		"fizetésId": 4
 	}
 ]
