@@ -12,13 +12,8 @@ const addressSchema = new Schema(
 
 const userSchema = new Schema<IUser>(
     {
-        address: addressSchema,
         email: {
             type: String,
-            required: true,
-        },
-        email_verified: {
-            type: Boolean,
             required: true,
         },
         auto_login: {
