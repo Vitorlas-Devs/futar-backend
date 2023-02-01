@@ -1,129 +1,143 @@
 [
 	{
-		"_id": 0,
-		"nap": 1,
-		"sorszám": 7,
-		"megtettÚt": 14
-	},
-	{
 		"_id": 1,
 		"nap": 3,
 		"sorszám": 3,
-		"megtettÚt": 10
+		"megtettÚt": 10,
+		"fizetésId": 3
 	},
 	{
 		"_id": 2,
 		"nap": 1,
 		"sorszám": 1,
-		"megtettÚt": 3
+		"megtettÚt": 3,
+		"fizetésId": 2
 	},
 	{
 		"_id": 3,
 		"nap": 1,
 		"sorszám": 2,
-		"megtettÚt": 3
+		"megtettÚt": 3,
+		"fizetésId": 2
 	},
 	{
 		"_id": 4,
 		"nap": 1,
 		"sorszám": 3,
-		"megtettÚt": 1
+		"megtettÚt": 1,
+		"fizetésId": 1
 	},
 	{
 		"_id": 5,
 		"nap": 1,
 		"sorszám": 4,
-		"megtettÚt": 9
+		"megtettÚt": 9,
+		"fizetésId": 3
 	},
 	{
 		"_id": 6,
 		"nap": 1,
 		"sorszám": 5,
-		"megtettÚt": 5
+		"megtettÚt": 5,
+		"fizetésId": 2
 	},
 	{
 		"_id": 7,
 		"nap": 1,
 		"sorszám": 6,
-		"megtettÚt": 2
+		"megtettÚt": 2,
+		"fizetésId": 1
 	},
 	{
 		"_id": 8,
 		"nap": 1,
 		"sorszám": 8,
-		"megtettÚt": 9
+		"megtettÚt": 9,
+		"fizetésId": 3
 	},
 	{
 		"_id": 9,
 		"nap": 1,
 		"sorszám": 9,
-		"megtettÚt": 8
+		"megtettÚt": 8,
+		"fizetésId": 3
 	},
 	{
 		"_id": 10,
 		"nap": 1,
 		"sorszám": 10,
-		"megtettÚt": 5
+		"megtettÚt": 5,
+		"fizetésId": 2
 	},
 	{
 		"_id": 11,
 		"nap": 1,
 		"sorszám": 11,
-		"megtettÚt": 6
+		"megtettÚt": 6,
+		"fizetésId": 3
 	},
 	{
 		"_id": 12,
 		"nap": 3,
 		"sorszám": 1,
-		"megtettÚt": 7
+		"megtettÚt": 7,
+		"fizetésId": 3
 	},
 	{
 		"_id": 13,
 		"nap": 3,
 		"sorszám": 2,
-		"megtettÚt": 7
+		"megtettÚt": 7,
+		"fizetésId": 3
 	},
 	{
 		"_id": 14,
 		"nap": 3,
 		"sorszám": 4,
-		"megtettÚt": 2
+		"megtettÚt": 2,
+		"fizetésId": 1
 	},
 	{
 		"_id": 15,
 		"nap": 3,
 		"sorszám": 5,
-		"megtettÚt": 4
+		"megtettÚt": 4,
+		"fizetésId": 2
 	},
 	{
 		"_id": 16,
 		"nap": 3,
 		"sorszám": 6,
-		"megtettÚt": 6
+		"megtettÚt": 6,
+		"fizetésId": 3
 	},
 	{
 		"_id": 17,
 		"nap": 3,
 		"sorszám": 7,
-		"megtettÚt": 3
+		"megtettÚt": 3,
+		"fizetésId": 3
 	},
 	{
 		"_id": 18,
 		"nap": 3,
 		"sorszám": 8,
-		"megtettÚt": 5
+		"megtettÚt": 5,
+		"fizetésId": 2
 	},
 	{
 		"_id": 19,
 		"nap": 3,
 		"sorszám": 9,
-		"megtettÚt": 8
+		"megtettÚt": 8,
+		"fizetésId": 3
 	},
 	{
 		"_id": 20,
 		"nap": 3,
 		"sorszám": 10,
-		"megtettÚt": 1
+		"megtettÚt": 1,
+		"fizetésId": 1
 	},
 	{
 		"_id": 21,
@@ -364,5 +378,12 @@
 		"nap": 5,
 		"sorszám": 20,
 		"megtettÚt": 7
+	},
+	{
+		"_id": 61,
+		"nap": 1,
+		"sorszám": 7,
+		"megtettÚt": 14,
+		"fizetésId": 4
 	}
 ]
