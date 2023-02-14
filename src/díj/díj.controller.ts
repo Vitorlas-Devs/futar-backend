@@ -13,7 +13,7 @@ import IDíj from "./díj.interface";
 import díjModel from "./díj.model";
 
 export default class DíjController implements IController {
-    public path = "/díj";
+    public path = "/dij";
     public router = Router();
     private díj = díjModel;
 
