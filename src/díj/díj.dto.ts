@@ -1,13 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IsString } from "class-validator";
+import { IsNumber, IsPositive, IsNotEmpty } from "class-validator";
 
 export default class CreateDíjDto {
-    @IsString()
-    public minKm: string;
+    @IsNumber()
+    @IsPositive()
+    @IsNotEmpty()
+    public minKm: number;
 
-    @IsString()
-    public maxKm: string;
+    @IsNumber()
+    @IsPositive()
+    @IsNotEmpty()
+    public maxKm: number;
 
-    @IsString()
-    public összeg: string;
+    @IsNumber()
+    @IsPositive()
+    @IsNotEmpty()
+    public összeg: number;
 }
