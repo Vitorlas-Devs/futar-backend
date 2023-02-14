@@ -11,6 +11,6 @@ const díjSchema = new Schema<IDíj>(
     { versionKey: false },
 );
 
-const díjModel = model<IDíj>("Díj", díjSchema);
+const díjModel = model<IDíj>("Díj", díjSchema, "díjak");
 
 export default díjModel;

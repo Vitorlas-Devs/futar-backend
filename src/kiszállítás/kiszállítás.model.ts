@@ -12,6 +12,6 @@ const kiszállításSchema = new Schema<IKiszállítás>(
     { versionKey: false },
 );
 
-const kiszállításModel = model<IKiszállítás>("Kiszállítások", kiszállításSchema);
+const kiszállításModel = model<IKiszállítás>("Kiszállítások", kiszállításSchema, "kiszállítások");
 
 export default kiszállításModel;
