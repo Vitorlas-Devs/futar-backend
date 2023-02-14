@@ -47,7 +47,7 @@ export default class ReportController implements IController {
                 },
                 {
                     $lookup: {
-                        from: "posts",
+                        from: "díjak",
                         localField: "users._id",
                         foreignField: "author",
                         as: "articles",
