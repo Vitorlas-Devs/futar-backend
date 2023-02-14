@@ -24,7 +24,7 @@ export default class DíjController implements IController {
     private initializeRoutes() {
         this.router.get(this.path, [authMiddleware, roleCheckMiddleware(["admin"])], this.getAllDíj);
         this.router.get(`${this.path}/:id`, authMiddleware, this.getDíjById);
-        this.router.get(`${this.path}/:offset/:limit/:order/:sort/:keyword?`, [authMiddleware, roleCheckMiddleware(["admin"])], this.getPaginatedDíjs);
+        this.router.get(`${this.path}/:offset/:limit/:order/:sort/:keyword?`, [authMiddleware, roleCheckMiddleware(["admin"])], this.getPaginatedDíjak);
         this.router.patch(`${this.path}/:id`, [authMiddleware, validationMiddleware(CreateDíjDto, true)], this.modifyDíj);
         this.router.delete(`${this.path}/:id`, [authMiddleware, roleCheckMiddleware(["admin"])], this.deleteDíj);
         this.router.post(this.path, [authMiddleware, roleCheckMiddleware(["admin"]), validationMiddleware(CreateDíjDto)], this.createDíj);
@@ -41,7 +41,7 @@ export default class DíjController implements IController {
         }
     };
 
-    private getPaginatedDíjs = async (req: Request, res: Response, next: NextFunction) => {
+    private getPaginatedDíjak = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const offset = parseInt(req.params.offset);
             const limit = parseInt(req.params.limit);
