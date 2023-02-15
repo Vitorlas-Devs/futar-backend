@@ -1,15 +1,6 @@
 import { Schema, model } from "mongoose";
 import IUser from "./user.interface";
 
-const addressSchema = new Schema(
-    {
-        city: String,
-        country: String,
-        street: String,
-    },
-    { versionKey: false },
-);
-
 const userSchema = new Schema<IUser>(
     {
         email: {
