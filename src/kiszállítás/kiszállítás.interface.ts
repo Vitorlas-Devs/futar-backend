@@ -4,5 +4,5 @@ export default interface IKiszállítás {
     nap: Date;
     sorszám: number;
     megtettÚt: number;
-    fizetésId: number;
+    díj: number;
 }
