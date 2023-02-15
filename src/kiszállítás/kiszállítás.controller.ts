@@ -22,12 +22,13 @@ export default class KiszállításController implements IController {
     }
 
     private initializeRoutes() {
-        this.router.get(this.path, authMiddleware, this.getAllKiszállítások);
-        this.router.get(`${this.path}/:id`, authMiddleware, this.getKiszállításById);
-        this.router.get(`${this.path}/:offset/:limit/:order/:sort/:keyword?`, authMiddleware, this.getPaginatedKiszállítások);
-        this.router.patch(`${this.path}/:id`, [authMiddleware, validationMiddleware(CreateKiszállításDto, true)], this.modifyKiszállítás);
-        this.router.delete(`${this.path}/:id`, authMiddleware, this.deleteKiszállítások);
-        this.router.post(this.path, [authMiddleware, validationMiddleware(CreateKiszállításDto)], this.createKiszállítás);
+        this.routes.forEach(route => {
+            const routerMethod = (this.router as any)[route.method];
+            if (!routerMethod) {
+                throw new Error(`Unsupported HTTP method: ${route.method}`);
+            }
+            routerMethod.call(this.router, route.path, route.localMiddleware, route.handler);
+        });
     }
 
     private getAllKiszállítások = async (req: Request, res: Response, next: NextFunction) => {
@@ -139,4 +140,43 @@ export default class KiszállításController implements IController {
             next(new HttpException(400, error.message));
         }
     };
+
+    public routes = [
+        {
+            path: this.path,
+            method: "get",
+            handler: this.getAllKiszállítások,
+            localMiddleware: [authMiddleware],
+        },
+        {
+            path: `${this.path}/:id`,
+            method: "get",
+            handler: this.getKiszállításById,
+            localMiddleware: [authMiddleware],
+        },
+        {
+            path: `${this.path}/:offset/:limit/:order/:sort/:keyword?`,
+            method: "get",
+            handler: this.getPaginatedKiszállítások,
+            localMiddleware: [authMiddleware],
+        },
+        {
+            path: `${this.path}/:id`,
+            method: "patch",
+            handler: this.modifyKiszállítás,
+            localMiddleware: [authMiddleware, validationMiddleware(CreateKiszállításDto, true)],
+        },
+        {
+            path: `${this.path}/:id`,
+            method: "delete",
+            handler: this.deleteKiszállítások,
+            localMiddleware: [authMiddleware],
+        },
+        {
+            path: this.path,
+            method: "post",
+            handler: this.createKiszállítás,
+            localMiddleware: [authMiddleware, validationMiddleware(CreateKiszállításDto)],
+        },
+    ];
 }

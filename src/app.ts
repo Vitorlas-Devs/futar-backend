@@ -8,6 +8,8 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import morgan from "morgan";
 import { config } from "dotenv";
+import PostmanCollectionCreator from "./postman";
+import fs from "fs";
 
 export default class App {
     public app: express.Application;
@@ -19,6 +21,7 @@ export default class App {
         this.initializeMiddlewares();
         this.initializeControllers(controllers);
         this.initializeErrorHandling();
+        this.createPostmanCollection();
     }
 
     public listen(): void {
@@ -100,5 +103,11 @@ export default class App {
         mongoose.connection.on("connected", () => {
             console.log("Connected to MongoDB server.");
         });
+    }
+
+    public createPostmanCollection() {
+        const collectionCreator = new PostmanCollectionCreator();
+        fs.writeFileSync("postman_collection.json", collectionCreator.collectionString);
+        console.log("Postman collection created");
     }
 }
