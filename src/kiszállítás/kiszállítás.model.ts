@@ -6,7 +6,7 @@ import IKiszállítás from "./kiszállítás.interface";
 const kiszállításSchema = new Schema<IKiszállítás>(
     {
         _id: Number,
-        nap: { type: Date, required: true },
+        nap: { type: Number, required: true },
         sorszám: { type: Number, required: true },
         megtettÚt: { type: Number, required: true },
         díj: { ref: "Díj", type: Number, required: true },

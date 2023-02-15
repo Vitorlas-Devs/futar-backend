@@ -33,7 +33,7 @@ export default class KiszállításController implements IController {
     private getAllKiszállítások = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const count = await this.kiszállításM.countDocuments();
-            const kiszállítások = await this.kiszállításM.find();
+            const kiszállítások = await this.kiszállításM.find().populate("díj", "-_id");
             res.send({ count: count, kiszállítások: kiszállítások });
         } catch (error) {
             next(new HttpException(400, error.message));
@@ -102,12 +102,13 @@ export default class KiszállításController implements IController {
     private createKiszállítás = async (req: IRequestWithUser, res: Response, next: NextFunction) => {
         try {
             const kiszállításData: IKiszállítás = req.body;
+            const lastKiszállítás = await this.kiszállításM.findOne().sort({ _id: -1 });
+            kiszállításData._id = lastKiszállítás ? lastKiszállítás._id + 1 : 1;
             const createdKiszállítás = new this.kiszállításM({
                 ...kiszállításData,
-                author: req.user._id,
             });
             const savedKiszállítás = await createdKiszállítás.save();
-            await savedKiszállítás.populate("author", "-password");
+            await savedKiszállítás.populate("díj", "-_id");
             res.send(savedKiszállítás);
         } catch (error) {
             next(new HttpException(400, error.message));
