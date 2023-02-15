@@ -5,9 +5,10 @@ import IKiszállítás from "./kiszállítás.interface";
 
 const kiszállításSchema = new Schema<IKiszállítás>(
     {
-        futár: { type: Schema.Types.ObjectId, ref: "Futár", required: true },
         nap: { type: Date, required: true },
         sorszám: { type: Number, required: true },
+        megtettÚt: { type: Number, required: true },
+        fizetésId: { ref: "Díj", type: Number, required: true },
     },
     { versionKey: false },
 );
