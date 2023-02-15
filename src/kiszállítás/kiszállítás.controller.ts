@@ -61,6 +61,7 @@ export default class KiszállításController implements IController {
                 count = await this.kiszállításM.countDocuments();
                 kiszállítások = await this.kiszállításM
                     .find({})
+                    .populate("díj", "-_id")
                     .sort(`${sort == -1 ? "-" : ""}${order}`)
                     .skip(offset)
                     .limit(limit);
