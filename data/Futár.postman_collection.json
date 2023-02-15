@@ -1,10 +1,39 @@
 {
 	"info": {
-		"_postman_id": "30e812e6-f97b-45d6-b530-d2aa4c1547b1",
+		"_postman_id": "12ec885d-0aa9-453d-9729-7f75305c835f",
 		"name": "Futár",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23370412"
 	},
 	"item": [
+		{
+			"name": "Díj",
+			"item": []
+		},
+		{
+			"name": "Kiszállítás",
+			"item": [
+				{
+					"name": "Get All Kiszállítás",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/kiszallitasok",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"kiszallitasok"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Login",
 			"request": {
@@ -31,33 +60,6 @@
 						"login"
 					]
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Kiszállítás",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000/kiszallitasok",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"kiszallitasok"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "GET",
-				"header": []
 			},
 			"response": []
 		}
