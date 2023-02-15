@@ -53,6 +53,7 @@ export default class KiszállításController implements IController {
                 count = await this.kiszállításM.find({ $or: [{ kiszállításName: myRegex }, { description: myRegex }] }).count();
                 kiszállítások = await this.kiszállításM
                     .find({ $or: [{ kiszállításName: myRegex }, { description: myRegex }] })
+                    .populate("díj", "-_id")
                     .sort(`${sort == -1 ? "-" : ""}${order}`)
                     .skip(offset)
                     .limit(limit);
@@ -73,7 +74,7 @@ export default class KiszállításController implements IController {
     private getKiszállításById = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const id = req.params.id;
-            const kiszállítás = await this.kiszállításM.findById(id);
+            const kiszállítás = await this.kiszállításM.findById(id).populate("díj", "-_id");
             if (kiszállítás) {
                 res.send(kiszállítás);
             } else {
