@@ -1,6 +1,5 @@
-import { IsArray, ArrayNotEmpty, IsOptional, IsString, IsBoolean, IsEmail, ValidateNested } from "class-validator";
+import { IsArray, ArrayNotEmpty, IsString, IsBoolean, IsEmail } from "class-validator";
 // import { Match } from "./match.decorator";
-import CreateAddressDto from "./address.dto";
 import IUser from "./user.interface";
 
 export default class CreateUserDto implements IUser {
@@ -31,8 +30,4 @@ export default class CreateUserDto implements IUser {
     @ArrayNotEmpty()
     @IsString({ each: true })
     public roles: string[];
-
-    @IsOptional()
-    @ValidateNested()
-    public address?: CreateAddressDto;
 }

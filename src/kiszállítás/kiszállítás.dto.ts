@@ -15,4 +15,9 @@ export default class CreateKiszállításDto implements IKiszállítás {
     @IsPositive()
     @IsNotEmpty()
     public megtettÚt: number;
+
+    @IsNumber()
+    @IsPositive()
+    @IsNotEmpty()
+    public fizetésId: number;
 }
