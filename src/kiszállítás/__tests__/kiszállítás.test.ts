@@ -21,80 +21,80 @@ beforeAll(async () => {
 describe("test kiszállítások endpoints", () => {
     let id: string;
 
-    it("GET /kiszállítások", async () => {
+    it("GET /kiszallitasok", async () => {
         // get response with supertest-response:
-        const response = await request(server).get("/kiszállítások").set("Cookie", cookie);
+        const response = await request(server).get("/kiszallitasok").set("Cookie", cookie);
         // check response with jest:
         expect(response.statusCode).toEqual(200);
         expect(response.body.count).toEqual(10); // basically 10
     });
 
-    it("GET /kiszállítások (missing cookie)", async () => {
-        const response = await request(server).get("/kiszállítások");
+    it("GET /kiszallitasok (missing cookie)", async () => {
+        const response = await request(server).get("/kiszallitasok");
         expect(response.statusCode).toEqual(401);
         expect(response.body.message).toEqual("Session id missing or session has expired, please log in!");
     });
 
     it("GET /:offset/:limit/:order/:sort/:keyword? (search for 'keyword')", async () => {
-        const response = await request(server).get("/kiszállítások/0/5/discription/1/paradicsom").set("Cookie", cookie);
+        const response = await request(server).get("/kiszallitasok/0/5/discription/1/paradicsom").set("Cookie", cookie);
         expect(response.statusCode).toEqual(200);
         expect(response.body.count).toEqual(2);
     });
 
     it("GET /:offset/:limit/:order/:sort/:keyword? (search for missing 'keyword')", async () => {
-        const response = await request(server).get("/kiszállítások/0/5/discription/1/goesiéhgesouihg").set("Cookie", cookie);
+        const response = await request(server).get("/kiszallitasok/0/5/discription/1/goesiéhgesouihg").set("Cookie", cookie);
         expect(response.statusCode).toEqual(200);
         expect(response.body.count).toEqual(0);
     });
 
     it("GET /:offset/:limit/:order/:sort/:keyword? (no last parameter 'keyword')", async () => {
-        const response = await request(server).get("/kiszállítások/0/5/discription/1").set("Cookie", cookie);
+        const response = await request(server).get("/kiszallitasok/0/5/discription/1").set("Cookie", cookie);
         expect(response.statusCode).toEqual(200);
         expect(response.body.count).toEqual(10);
     });
 
-    it("GET /kiszállítások/:id  (correct id)", async () => {
+    it("GET /kiszallitasok/:id  (correct id)", async () => {
         id = "61dc03c0e397a1e9cf988b37";
-        const response = await request(server).get(`/kiszállítások/${id}`).set("Cookie", cookie);
+        const response = await request(server).get(`/kiszallitasok/${id}`).set("Cookie", cookie);
         expect(response.statusCode).toEqual(200);
         expect(response.body.kiszállításName).toEqual("KELKÁPOSZTA FŐZELÉK");
     });
 
-    it("GET /kiszállítások/:id  (missing, but valid id)", async () => {
+    it("GET /kiszallitasok/:id  (missing, but valid id)", async () => {
         id = "6367f3038ae13010a4c9ab49";
-        const response = await request(server).get(`/kiszállítások/${id}`).set("Cookie", cookie);
+        const response = await request(server).get(`/kiszallitasok/${id}`).set("Cookie", cookie);
         expect(response.statusCode).toEqual(404);
         expect(response.body.message).toEqual(`Kiszállítás with id ${id} not found`);
     });
 
-    it("GET /kiszállítások/:id  (not valid object id)", async () => {
+    it("GET /kiszallitasok/:id  (not valid object id)", async () => {
         id = "61dc03c0e397a1e9cf988b3";
-        const response = await request(server).get(`/kiszállítások/${id}`).set("Cookie", cookie);
+        const response = await request(server).get(`/kiszallitasok/${id}`).set("Cookie", cookie);
         expect(response.statusCode).toEqual(404);
         expect(response.body.message).toEqual(`This ${id} id is not valid.`);
     });
 
-    it("DELETE /kiszállítások/:id  (not valid object id)", async () => {
-        const response = await request(server).delete(`/kiszállítások/${id}`).set("Cookie", cookie);
+    it("DELETE /kiszallitasok/:id  (not valid object id)", async () => {
+        const response = await request(server).delete(`/kiszallitasok/${id}`).set("Cookie", cookie);
         expect(response.statusCode).toEqual(404);
         expect(response.body.message).toEqual(`This ${id} id is not valid.`);
     });
 
-    it("PATCH /kiszállítások/:id  (not valid object id)", async () => {
-        const response = await request(server).patch(`/kiszállítások/${id}`).set("Cookie", cookie);
+    it("PATCH /kiszallitasok/:id  (not valid object id)", async () => {
+        const response = await request(server).patch(`/kiszallitasok/${id}`).set("Cookie", cookie);
         expect(response.statusCode).toEqual(404);
         expect(response.body.message).toEqual(`This ${id} id is not valid.`);
     });
 
-    it("POST /kiszállítások (with empty json object)", async () => {
-        const response = await request(server).post("/kiszállítások").set("Cookie", cookie);
+    it("POST /kiszallitasok (with empty json object)", async () => {
+        const response = await request(server).post("/kiszallitasok").set("Cookie", cookie);
         expect(response.statusCode).toEqual(400);
         expect(response.body.message).toEqual("kiszállításName must be a string,kiszállításName should not be empty, imageURL must be a string,imageURL must be an URL address,imageURL should not be empty, description must be a string,description should not be empty, ingredients should not be empty,ingredients must be an array");
     });
 
-    it("POST /kiszállítások", async () => {
+    it("POST /kiszallitasok", async () => {
         const response = await request(server)
-            .post("/kiszállítások")
+            .post("/kiszallitasok")
             .set("Cookie", cookie)
             .send({
                 kiszállításName: "Mock kiszállítás by Ányos",
@@ -106,27 +106,27 @@ describe("test kiszállítások endpoints", () => {
         expect(response.statusCode).toEqual(200);
     });
 
-    it("PATCH /kiszállítások/:id", async () => {
-        const response = await request(server).patch(`/kiszállítások/${id}`).set("Cookie", cookie).send({
+    it("PATCH /kiszallitasok/:id", async () => {
+        const response = await request(server).patch(`/kiszallitasok/${id}`).set("Cookie", cookie).send({
             kiszállításName: "asdasd",
         });
         expect(response.statusCode).toEqual(200);
     });
 
-    it("DELETE /kiszállítások/:id", async () => {
-        const response = await request(server).delete(`/kiszállítások/${id}`).set("Cookie", cookie);
+    it("DELETE /kiszallitasok/:id", async () => {
+        const response = await request(server).delete(`/kiszallitasok/${id}`).set("Cookie", cookie);
         expect(response.statusCode).toEqual(200);
     });
 
-    it("DELETE /kiszállítások/:id (missing, but valid id)", async () => {
+    it("DELETE /kiszallitasok/:id (missing, but valid id)", async () => {
         id = "6367f3038ae13010a4c9ab49";
-        const response = await request(server).delete(`/kiszállítások/${id}`).set("Cookie", cookie);
+        const response = await request(server).delete(`/kiszallitasok/${id}`).set("Cookie", cookie);
         expect(response.statusCode).toEqual(404);
         expect(response.body.message).toEqual(`Kiszállítás with id ${id} not found`);
     });
 
-    it("PATCH /kiszállítások/:id (missing, but valid id)", async () => {
-        const response = await request(server).patch(`/kiszállítások/${id}`).set("Cookie", cookie).send({
+    it("PATCH /kiszallitasok/:id (missing, but valid id)", async () => {
+        const response = await request(server).patch(`/kiszallitasok/${id}`).set("Cookie", cookie).send({
             kiszállításName: "asdasd",
         });
         expect(response.statusCode).toEqual(404);

@@ -13,7 +13,7 @@ import kiszállításModel from "./kiszállítás.model";
 import validationMiddleware from "../middleware/validation.middleware";
 
 export default class KiszállításController implements IController {
-    public path = "/kiszállítások";
+    public path = "/kiszallitasok";
     public router = Router();
     private kiszállításM = kiszállításModel;
 
