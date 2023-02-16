@@ -7,7 +7,7 @@ import authMiddleware from "../middleware/auth.middleware";
 import roleCheckMiddleware from "../middleware/roleCheckMiddleware";
 import validationMiddleware from "../middleware/validation.middleware";
 import CreateDíjDto from "./díj.dto";
-import { IDíj, exampleDíj } from "./díj.interface";
+import IDíj, { exampleDíj } from "./díj.interface";
 import díjModel from "./díj.model";
 import { Route } from "../types/postman";
 
@@ -21,7 +21,7 @@ export default class DíjController implements IController {
     }
 
     private initializeRoutes() {
-        this.routes.forEach((route: Route) => {
+        this.routes.forEach((route: Route<IDíj>) => {
             const routerMethod = (this.router as any)[route.method];
             if (!routerMethod) {
                 throw new Error(`Unsupported HTTP method: ${route.method}`);

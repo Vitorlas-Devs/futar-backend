@@ -3,7 +3,7 @@ import { NextFunction, Request, Response, Router } from "express";
 import IController from "../interfaces/controller.interface";
 import CreateKiszállításDto from "./kiszállítás.dto";
 import HttpException from "../exceptions/HttpException";
-import { IKiszállítás, exampleKiszállítás } from "./kiszállítás.interface";
+import IKiszállítás, { exampleKiszállítás } from "../kiszállítás/kiszállítás.interface";
 import KiszállításNotFoundException from "../exceptions/KiszállításNotFoundException";
 import IRequestWithUser from "../interfaces/requestWithUser.interface";
 import authMiddleware from "../middleware/auth.middleware";
@@ -21,7 +21,7 @@ export default class KiszállításController implements IController {
     }
 
     private initializeRoutes() {
-        this.routes.forEach((route: Route) => {
+        this.routes.forEach((route: Route<IKiszállítás>) => {
             const routerMethod = (this.router as any)[route.method];
             if (!routerMethod) {
                 throw new Error(`Unsupported HTTP method: ${route.method}`);

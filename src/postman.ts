@@ -29,7 +29,7 @@ export default class PostmanCollectionCreator {
                 name: controllerName,
                 item: <any>[],
             };
-            controller.routes.forEach((route: Route) => {
+            controller.routes.forEach((route: Route<unknown>) => {
                 const { method, path, variable, handler, body } = route;
                 const { name } = handler;
                 const requestName = name.replace(/([a-z])([A-Z])|^./g, (match, p1, p2) => {

@@ -10,7 +10,7 @@ import IdNotValidException from "../exceptions/IdNotValidException";
 import HttpException from "../exceptions/HttpException";
 import userModel from "./user.model";
 import díjModel from "../díj/díj.model";
-import { IUser, exampleUser } from "./user.interface";
+import IUser, { exampleUser } from "./user.interface";
 import { Route } from "../types/postman";
 
 export default class UserController implements IController {
@@ -24,7 +24,7 @@ export default class UserController implements IController {
     }
 
     private initializeRoutes() {
-        this.routes.forEach((route: Route) => {
+        this.routes.forEach((route: Route<IUser>) => {
             const routerMethod = (this.router as any)[route.method];
             if (!routerMethod) {
                 throw new Error(`Unsupported HTTP method: ${route.method}`);

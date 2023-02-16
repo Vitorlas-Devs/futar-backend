@@ -1,4 +1,4 @@
-export interface IKiszállítás {
+export default interface IKiszállítás {
     _id: number;
     nap: number;
     sorszám: number;

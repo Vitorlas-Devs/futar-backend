@@ -1,7 +1,5 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
-import IDíj from "díj/díj.interface";
-import IUser from "user/user.interface";
-import IKiszállítás from "kiszállítás/kiszállítás.interface";
+import { Method } from "express-serve-static-core";
 
 export type Variable = {
     key?: string;
@@ -9,11 +7,11 @@ export type Variable = {
     description: string;
 };
 
-export type Route = {
-    method: string;
+export type Route<T> = {
+    method: Method;
     path: string;
     handler: (req: Request, res: Response, next?: NextFunction) => Promise<void> | void;
     localMiddleware?: RequestHandler[];
     variable?: Variable[];
-    body?: IDíj | IUser | IKiszállítás;
+    body?: T;
 };

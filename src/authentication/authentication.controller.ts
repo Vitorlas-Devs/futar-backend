@@ -13,7 +13,7 @@ import IController from "../interfaces/controller.interface";
 import IGoogleUserInfo from "../interfaces/googleUserInfo.interface";
 import IRequestWithUser from "../interfaces/requestWithUser.interface";
 import ISession from "../interfaces/session.interface";
-import { IUser, exampleUser } from "../user/user.interface";
+import IUser, { exampleUser } from "../user/user.interface";
 import { Route } from "../types/postman";
 
 export default class AuthenticationController implements IController {
@@ -26,16 +26,12 @@ export default class AuthenticationController implements IController {
     }
 
     private initializeRoutes() {
-        this.routes.forEach((route: Route) => {
+        this.routes.forEach((route: Route<IUser>) => {
             const routerMethod = (this.router as any)[route.method];
             if (!routerMethod) {
                 throw new Error(`Unsupported HTTP method: ${route.method}`);
             }
-            if (route.localMiddleware) {
-                routerMethod.call(this.router, route.path, route.localMiddleware, route.handler);
-            } else {
-                routerMethod.call(this.router, route.path, route.handler);
-            }
+            routerMethod.call(this.router, route.path, route.localMiddleware || [], route.handler);
         });
     }
 
