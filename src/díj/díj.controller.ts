@@ -22,12 +22,13 @@ export default class DíjController implements IController {
     }
 
     private initializeRoutes() {
-        this.router.get(this.path, [authMiddleware, roleCheckMiddleware(["admin"])], this.getAllDíj);
-        this.router.get(`${this.path}/:id`, authMiddleware, this.getDíjById);
-        this.router.get(`${this.path}/:offset/:limit/:order/:sort/:keyword?`, [authMiddleware, roleCheckMiddleware(["admin"])], this.getPaginatedDíjak);
-        this.router.patch(`${this.path}/:id`, [authMiddleware, validationMiddleware(CreateDíjDto, true)], this.modifyDíj);
-        this.router.delete(`${this.path}/:id`, [authMiddleware, roleCheckMiddleware(["admin"])], this.deleteDíj);
-        this.router.post(this.path, [authMiddleware, roleCheckMiddleware(["admin"]), validationMiddleware(CreateDíjDto)], this.createDíj);
+        this.routes.forEach(route => {
+            const routerMethod = (this.router as any)[route.method];
+            if (!routerMethod) {
+                throw new Error(`Unsupported HTTP method: ${route.method}`);
+            }
+            routerMethod.call(this.router, route.path, route.localMiddleware, route.handler);
+        });
     }
 
     private getAllDíj = async (req: Request, res: Response, next: NextFunction) => {
@@ -132,4 +133,43 @@ export default class DíjController implements IController {
             next(new HttpException(400, error.message));
         }
     };
+
+    public routes = [
+        {
+            path: this.path,
+            method: "get",
+            handler: this.getAllDíj,
+            localMiddleware: [authMiddleware],
+        },
+        {
+            path: `${this.path}/:id`,
+            method: "get",
+            handler: this.getDíjById,
+            localMiddleware: [authMiddleware],
+        },
+        {
+            path: `${this.path}/:offset/:limit/:order/:sort/:keyword?`,
+            method: "get",
+            handler: this.getPaginatedDíjak,
+            localMiddleware: [authMiddleware],
+        },
+        {
+            path: `${this.path}/:id`,
+            method: "patch",
+            handler: this.modifyDíj,
+            localMiddleware: [authMiddleware, validationMiddleware(CreateDíjDto, true)],
+        },
+        {
+            path: `${this.path}/:id`,
+            method: "delete",
+            handler: this.deleteDíj,
+            localMiddleware: [authMiddleware, roleCheckMiddleware(["admin"])],
+        },
+        {
+            path: this.path,
+            method: "post",
+            handler: this.createDíj,
+            localMiddleware: [authMiddleware, roleCheckMiddleware(["admin"]), validationMiddleware(CreateDíjDto)],
+        },
+    ];
 }
