@@ -14,7 +14,7 @@ export default class ReportController implements IController {
 
     private initializeRoutes() {
         this.router.get("/", (req: Request, res: Response) => {
-            res.send("Hello World!");
+            res.send("Hello Futár!");
         });
         this.router.get(`${this.path}`, this.generateReport);
     }

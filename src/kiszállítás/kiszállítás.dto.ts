@@ -1,10 +1,10 @@
-import { IsDate, IsNotEmpty, IsNumber, IsPositive } from "class-validator";
-import IKiszállítás from "./kiszállítás.interface";
+import { IsNotEmpty, IsNumber, IsPositive } from "class-validator";
 
-export default class CreateKiszállításDto implements IKiszállítás {
-    @IsDate()
+export default class CreateKiszállításDto {
+    @IsNumber()
+    @IsPositive()
     @IsNotEmpty()
-    public nap: Date;
+    public nap: number;
 
     @IsNumber()
     @IsPositive()
@@ -15,4 +15,9 @@ export default class CreateKiszállításDto implements IKiszállítás {
     @IsPositive()
     @IsNotEmpty()
     public megtettÚt: number;
+
+    @IsNumber()
+    @IsPositive()
+    @IsNotEmpty()
+    public díj: number;
 }

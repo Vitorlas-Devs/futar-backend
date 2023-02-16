@@ -62,6 +62,49 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get All Kiszállítás",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/kiszallitasok",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"kiszallitasok"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Paginated Kiszállítás",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/kiszallitasok/0/99/megtettÚt/-1/500",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"kiszallitasok",
+						"0",
+						"99",
+						"megtettÚt",
+						"-1",
+						"500"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
