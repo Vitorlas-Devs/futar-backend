@@ -10,7 +10,8 @@ import IdNotValidException from "../exceptions/IdNotValidException";
 import HttpException from "../exceptions/HttpException";
 import userModel from "./user.model";
 import díjModel from "../díj/díj.model";
-import IUser from "./user.interface";
+import { IUser, exampleUser } from "./user.interface";
+import { Route } from "../types/postman";
 
 export default class UserController implements IController {
     public path = "/users";
@@ -23,14 +24,13 @@ export default class UserController implements IController {
     }
 
     private initializeRoutes() {
-        this.router.get(`${this.path}/díjak/:id`, authMiddleware, this.getAllDíjakOfUserByID);
-        this.router.get(`${this.path}/díjak/`, authMiddleware, this.getAllDíjakOfLoggedUser);
-        this.router.get(`${this.path}/:id`, authMiddleware, this.getUserById);
-        this.router.get(this.path, authMiddleware, this.getAllUsers);
-
-        this.router.patch(`${this.path}/:id`, [authMiddleware, validationMiddleware(CreateUserDto, true)], this.modifyUser);
-
-        this.router.delete(`${this.path}/:id`, authMiddleware, this.deleteUser);
+        this.routes.forEach((route: Route) => {
+            const routerMethod = (this.router as any)[route.method];
+            if (!routerMethod) {
+                throw new Error(`Unsupported HTTP method: ${route.method}`);
+            }
+            routerMethod.call(this.router, route.path, route.localMiddleware, route.handler);
+        });
     }
 
     private getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
@@ -125,4 +125,48 @@ export default class UserController implements IController {
             next(new HttpException(400, error.message));
         }
     };
+
+    public routes = [
+        {
+            path: `${this.path}/díjak/:id`,
+            method: "get",
+            handler: this.getAllDíjakOfUserByID,
+            localMiddleware: [authMiddleware],
+            variable: [{ value: "1", description: "A user ID-ja aminek a díjait lekérdezzük" }],
+        },
+        {
+            path: `${this.path}/díjak/`,
+            method: "get",
+            handler: this.getAllDíjakOfLoggedUser,
+            localMiddleware: [authMiddleware],
+        },
+        {
+            path: `${this.path}/:id`,
+            method: "get",
+            handler: this.getUserById,
+            localMiddleware: [authMiddleware],
+            variable: [{ value: "1", description: "A user ID-ja akit lekérdezzük" }],
+        },
+        {
+            path: this.path,
+            method: "get",
+            handler: this.getAllUsers,
+            localMiddleware: [authMiddleware],
+        },
+        {
+            path: `${this.path}/:id`,
+            method: "patch",
+            handler: this.modifyUser,
+            localMiddleware: [authMiddleware, validationMiddleware(CreateUserDto, true)],
+            variable: [{ value: "1", description: "A user ID-ja akit módosítunk" }],
+            body: exampleUser,
+        },
+        {
+            path: `${this.path}/:id`,
+            method: "delete",
+            handler: this.deleteUser,
+            localMiddleware: [authMiddleware],
+            variable: [{ value: "1", description: "A user ID-ja akit törölünk" }],
+        },
+    ];
 }

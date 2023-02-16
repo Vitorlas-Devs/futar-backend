@@ -1,7 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { Types } from "mongoose";
 import DíjNotFoundException from "../exceptions/DíjNotFoundException";
-import IdNotValidException from "../exceptions/IdNotValidException";
 import HttpException from "../exceptions/HttpException";
 import IController from "../interfaces/controller.interface";
 import IRequestWithUser from "../interfaces/requestWithUser.interface";
@@ -9,8 +7,9 @@ import authMiddleware from "../middleware/auth.middleware";
 import roleCheckMiddleware from "../middleware/roleCheckMiddleware";
 import validationMiddleware from "../middleware/validation.middleware";
 import CreateDíjDto from "./díj.dto";
-import IDíj from "./díj.interface";
+import { IDíj, exampleDíj } from "./díj.interface";
 import díjModel from "./díj.model";
+import { Route } from "../types/postman";
 
 export default class DíjController implements IController {
     public path = "/dij";
@@ -22,7 +21,7 @@ export default class DíjController implements IController {
     }
 
     private initializeRoutes() {
-        this.routes.forEach(route => {
+        this.routes.forEach((route: Route) => {
             const routerMethod = (this.router as any)[route.method];
             if (!routerMethod) {
                 throw new Error(`Unsupported HTTP method: ${route.method}`);
@@ -146,30 +145,42 @@ export default class DíjController implements IController {
             method: "get",
             handler: this.getDíjById,
             localMiddleware: [authMiddleware],
+            variable: [{ value: "1", description: "Díj ID-ja amit lekérünk" }],
         },
         {
             path: `${this.path}/:offset/:limit/:order/:sort/:keyword?`,
             method: "get",
             handler: this.getPaginatedDíjak,
             localMiddleware: [authMiddleware],
+            variable: [
+                { value: "0", description: "Hányadik rekordtól kezdjük?" },
+                { value: "10", description: "Lekért rekordok száma" },
+                { value: "sorszám", description: "Melyik mező szerint rendezzük?" },
+                { value: "1", description: "1: növekvő, -1: csökkenő" },
+                { value: "", description: "Keresési kulcsszó" },
+            ],
         },
         {
             path: `${this.path}/:id`,
             method: "patch",
             handler: this.modifyDíj,
             localMiddleware: [authMiddleware, validationMiddleware(CreateDíjDto, true)],
+            variable: [{ value: "1", description: "Díj ID-ja amit módosítunk" }],
+            body: exampleDíj,
         },
         {
             path: `${this.path}/:id`,
             method: "delete",
             handler: this.deleteDíj,
             localMiddleware: [authMiddleware, roleCheckMiddleware(["admin"])],
+            variable: [{ value: "1", description: "Díj ID-ja amit törlünk" }],
         },
         {
             path: this.path,
             method: "post",
             handler: this.createDíj,
             localMiddleware: [authMiddleware, roleCheckMiddleware(["admin"]), validationMiddleware(CreateDíjDto)],
+            body: exampleDíj,
         },
     ];
 }

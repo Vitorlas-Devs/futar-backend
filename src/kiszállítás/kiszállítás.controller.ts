@@ -3,14 +3,13 @@ import { NextFunction, Request, Response, Router } from "express";
 import IController from "../interfaces/controller.interface";
 import CreateKiszállításDto from "./kiszállítás.dto";
 import HttpException from "../exceptions/HttpException";
-import IdNotValidException from "../exceptions/IdNotValidException";
-import IKiszállítás from "./kiszállítás.interface";
+import { IKiszállítás, exampleKiszállítás } from "./kiszállítás.interface";
 import KiszállításNotFoundException from "../exceptions/KiszállításNotFoundException";
 import IRequestWithUser from "../interfaces/requestWithUser.interface";
-import { Types } from "mongoose";
 import authMiddleware from "../middleware/auth.middleware";
 import kiszállításModel from "./kiszállítás.model";
 import validationMiddleware from "../middleware/validation.middleware";
+import { Route } from "../types/postman";
 
 export default class KiszállításController implements IController {
     public path = "/kiszallitasok";
@@ -22,7 +21,7 @@ export default class KiszállításController implements IController {
     }
 
     private initializeRoutes() {
-        this.routes.forEach(route => {
+        this.routes.forEach((route: Route) => {
             const routerMethod = (this.router as any)[route.method];
             if (!routerMethod) {
                 throw new Error(`Unsupported HTTP method: ${route.method}`);
@@ -144,30 +143,42 @@ export default class KiszállításController implements IController {
             method: "get",
             handler: this.getKiszállításById,
             localMiddleware: [authMiddleware],
+            variable: [{ value: "1", description: "Kiszállítás ID-ja amit lekérünk" }],
         },
         {
             path: `${this.path}/:offset/:limit/:order/:sort/:keyword?`,
             method: "get",
             handler: this.getPaginatedKiszállítások,
             localMiddleware: [authMiddleware],
+            variable: [
+                { value: "0", description: "Hányadik rekordtól kezdjük?" },
+                { value: "10", description: "Lekért rekordok száma" },
+                { value: "sorszám", description: "Melyik mező szerint rendezzük?" },
+                { value: "1", description: "1: növekvő, -1: csökkenő" },
+                { value: "", description: "Keresési kulcsszó" },
+            ],
         },
         {
             path: `${this.path}/:id`,
             method: "patch",
             handler: this.modifyKiszállítás,
             localMiddleware: [authMiddleware, validationMiddleware(CreateKiszállításDto, true)],
+            variable: [{ value: "1", description: "Kiszállítás ID-ja amit módosítunk" }],
+            body: exampleKiszállítás,
         },
         {
             path: `${this.path}/:id`,
             method: "delete",
             handler: this.deleteKiszállítások,
             localMiddleware: [authMiddleware],
+            variable: [{ value: "1", description: "Kiszállítás ID-ja amit törlünk" }],
         },
         {
             path: this.path,
             method: "post",
             handler: this.createKiszállítás,
             localMiddleware: [authMiddleware, validationMiddleware(CreateKiszállításDto)],
+            body: exampleKiszállítás,
         },
     ];
 }
