@@ -49,10 +49,10 @@ export default class KiszállításController implements IController {
             let kiszállítások = [];
             let count = 0;
             if (req.params.keyword) {
-                const myRegex = new RegExp(req.params.keyword, "i"); // i for case insensitive
-                count = await this.kiszállításM.find({ $or: [{ kiszállításName: myRegex }, { description: myRegex }] }).count();
+                const keyword = parseInt(req.params.keyword);
+                count = await this.kiszállításM.find({ $or: [{ _id: keyword }, { nap: keyword }, { sorszám: keyword }, { megtettÚt: keyword }] }).count();
                 kiszállítások = await this.kiszállításM
-                    .find({ $or: [{ kiszállításName: myRegex }, { description: myRegex }] })
+                    .find({ $or: [{ _id: keyword }, { nap: keyword }, { sorszám: keyword }, { megtettÚt: keyword }] })
                     .populate("díj", "-_id")
                     .sort(`${sort == -1 ? "-" : ""}${order}`)
                     .skip(offset)
