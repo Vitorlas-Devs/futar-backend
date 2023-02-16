@@ -74,15 +74,11 @@ export default class DíjController implements IController {
     private getDíjById = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const id = req.params.id;
-            if (Types.ObjectId.isValid(id)) {
-                const díj = await this.díj.findById(id).populate("author", "-password");
-                if (díj) {
-                    res.send(díj);
-                } else {
-                    next(new DíjNotFoundException(id));
-                }
+            const díj = await this.díj.findById(id);
+            if (díj) {
+                res.send(díj);
             } else {
-                next(new IdNotValidException(id));
+                next(new DíjNotFoundException(id));
             }
         } catch (error) {
             next(new HttpException(400, error.message));
@@ -92,16 +88,12 @@ export default class DíjController implements IController {
     private modifyDíj = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const id = req.params.id;
-            if (Types.ObjectId.isValid(id)) {
-                const díjData: IDíj = req.body;
-                const díj = await this.díj.findByIdAndUpdate(id, díjData, { new: true });
-                if (díj) {
-                    res.send(díj);
-                } else {
-                    next(new DíjNotFoundException(id));
-                }
+            const díjData: IDíj = req.body;
+            const díj = await this.díj.findByIdAndUpdate(id, díjData, { new: true });
+            if (díj) {
+                res.send(díj);
             } else {
-                next(new IdNotValidException(id));
+                next(new DíjNotFoundException(id));
             }
         } catch (error) {
             next(new HttpException(400, error.message));
@@ -111,12 +103,12 @@ export default class DíjController implements IController {
     private createDíj = async (req: IRequestWithUser, res: Response, next: NextFunction) => {
         try {
             const díjData: IDíj = req.body;
+            const lastDíj = await this.díj.findOne().sort({ _id: -1 });
+            díjData._id = lastDíj ? lastDíj._id + 1 : 1;
             const createdDíj = new this.díj({
                 ...díjData,
-                author: req.user._id,
             });
             const savedDíj = await createdDíj.save();
-            await savedDíj.populate("author", "-password");
             const count = await this.díj.countDocuments();
             res.send({ count: count, díj: savedDíj });
             // res.send(savedDíj);
@@ -128,17 +120,13 @@ export default class DíjController implements IController {
     private deleteDíj = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const id = req.params.id;
-            if (Types.ObjectId.isValid(id)) {
-                const successResponse = await this.díj.findByIdAndDelete(id);
-                if (successResponse) {
-                    // const count = await this.díj.countDocuments();
-                    // res.send({ count: count, status: 200 });
-                    res.sendStatus(200);
-                } else {
-                    next(new DíjNotFoundException(id));
-                }
+            const successResponse = await this.díj.findByIdAndDelete(id);
+            if (successResponse) {
+                // const count = await this.díj.countDocuments();
+                // res.send({ count: count, status: 200 });
+                res.sendStatus(200);
             } else {
-                next(new IdNotValidException(id));
+                next(new DíjNotFoundException(id));
             }
         } catch (error) {
             next(new HttpException(400, error.message));

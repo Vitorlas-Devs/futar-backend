@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "30e812e6-f97b-45d6-b530-d2aa4c1547b1",
+		"_postman_id": "2e586671-041d-4fba-ac45-7429337c0d75",
 		"name": "Futár",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -54,10 +54,26 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Get Paginated Kiszállítás",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/kiszallitasok/0/99/megtettÚt/-1/500",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"kiszallitasok",
+						"0",
+						"99",
+						"megtettÚt",
+						"-1",
+						"500"
+					]
+				}
 			},
 			"response": []
 		}

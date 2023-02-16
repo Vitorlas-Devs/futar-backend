@@ -5,10 +5,11 @@ import IKiszállítás from "./kiszállítás.interface";
 
 const kiszállításSchema = new Schema<IKiszállítás>(
     {
-        nap: { type: Date, required: true },
+        _id: Number,
+        nap: { type: Number, required: true },
         sorszám: { type: Number, required: true },
         megtettÚt: { type: Number, required: true },
-        fizetésId: { ref: "Díj", type: Number, required: true },
+        díj: { ref: "Díj", type: Number, required: true },
     },
     { versionKey: false },
 );

@@ -1,8 +1,7 @@
-import { Types } from "mongoose";
 export default interface IKiszállítás {
-    _id?: Types.ObjectId | string;
-    nap: Date;
+    _id: number;
+    nap: number;
     sorszám: number;
     megtettÚt: number;
-    fizetésId: number;
+    díj: number;
 }

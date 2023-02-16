@@ -33,7 +33,7 @@ export default class KiszállításController implements IController {
     private getAllKiszállítások = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const count = await this.kiszállításM.countDocuments();
-            const kiszállítások = await this.kiszállításM.find();
+            const kiszállítások = await this.kiszállításM.find().populate("díj", "-_id");
             res.send({ count: count, kiszállítások: kiszállítások });
         } catch (error) {
             next(new HttpException(400, error.message));
@@ -49,10 +49,11 @@ export default class KiszállításController implements IController {
             let kiszállítások = [];
             let count = 0;
             if (req.params.keyword) {
-                const myRegex = new RegExp(req.params.keyword, "i"); // i for case insensitive
-                count = await this.kiszállításM.find({ $or: [{ kiszállításName: myRegex }, { description: myRegex }] }).count();
+                const keyword = parseInt(req.params.keyword);
+                count = await this.kiszállításM.find({ $or: [{ _id: keyword }, { nap: keyword }, { sorszám: keyword }, { megtettÚt: keyword }] }).count();
                 kiszállítások = await this.kiszállításM
-                    .find({ $or: [{ kiszállításName: myRegex }, { description: myRegex }] })
+                    .find({ $or: [{ _id: keyword }, { nap: keyword }, { sorszám: keyword }, { megtettÚt: keyword }] })
+                    .populate("díj", "-_id")
                     .sort(`${sort == -1 ? "-" : ""}${order}`)
                     .skip(offset)
                     .limit(limit);
@@ -60,6 +61,7 @@ export default class KiszállításController implements IController {
                 count = await this.kiszállításM.countDocuments();
                 kiszállítások = await this.kiszállításM
                     .find({})
+                    .populate("díj", "-_id")
                     .sort(`${sort == -1 ? "-" : ""}${order}`)
                     .skip(offset)
                     .limit(limit);
@@ -73,15 +75,11 @@ export default class KiszállításController implements IController {
     private getKiszállításById = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const id = req.params.id;
-            if (Types.ObjectId.isValid(id)) {
-                const kiszállítás = await this.kiszállításM.findById(id).populate("author", "-password");
-                if (kiszállítás) {
-                    res.send(kiszállítás);
-                } else {
-                    next(new KiszállításNotFoundException(id));
-                }
+            const kiszállítás = await this.kiszállításM.findById(id).populate("díj", "-_id");
+            if (kiszállítás) {
+                res.send(kiszállítás);
             } else {
-                next(new IdNotValidException(id));
+                next(new KiszállításNotFoundException(id));
             }
         } catch (error) {
             next(new HttpException(400, error.message));
@@ -91,16 +89,12 @@ export default class KiszállításController implements IController {
     private modifyKiszállítás = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const id = req.params.id;
-            if (Types.ObjectId.isValid(id)) {
-                const kiszállításData: IKiszállítás = req.body;
-                const kiszállítás = await this.kiszállításM.findByIdAndUpdate(id, kiszállításData, { new: true });
-                if (kiszállítás) {
-                    res.send(kiszállítás);
-                } else {
-                    next(new KiszállításNotFoundException(id));
-                }
+            const kiszállításData: IKiszállítás = req.body;
+            const kiszállítás = await this.kiszállításM.findByIdAndUpdate(id, kiszállításData, { new: true });
+            if (kiszállítás) {
+                res.send(kiszállítás);
             } else {
-                next(new IdNotValidException(id));
+                next(new KiszállításNotFoundException(id));
             }
         } catch (error) {
             next(new HttpException(400, error.message));
@@ -110,12 +104,13 @@ export default class KiszállításController implements IController {
     private createKiszállítás = async (req: IRequestWithUser, res: Response, next: NextFunction) => {
         try {
             const kiszállításData: IKiszállítás = req.body;
+            const lastKiszállítás = await this.kiszállításM.findOne().sort({ _id: -1 });
+            kiszállításData._id = lastKiszállítás ? lastKiszállítás._id + 1 : 1;
             const createdKiszállítás = new this.kiszállításM({
                 ...kiszállításData,
-                author: req.user._id,
             });
             const savedKiszállítás = await createdKiszállítás.save();
-            await savedKiszállítás.populate("author", "-password");
+            await savedKiszállítás.populate("díj", "-_id");
             res.send(savedKiszállítás);
         } catch (error) {
             next(new HttpException(400, error.message));
@@ -125,15 +120,11 @@ export default class KiszállításController implements IController {
     private deleteKiszállítások = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const id = req.params.id;
-            if (Types.ObjectId.isValid(id)) {
-                const successResponse = await this.kiszállításM.findByIdAndDelete(id);
-                if (successResponse) {
-                    res.sendStatus(200);
-                } else {
-                    next(new KiszállításNotFoundException(id));
-                }
+            const successResponse = await this.kiszállításM.findByIdAndDelete(id);
+            if (successResponse) {
+                res.sendStatus(200);
             } else {
-                next(new IdNotValidException(id));
+                next(new KiszállításNotFoundException(id));
             }
         } catch (error) {
             next(new HttpException(400, error.message));
