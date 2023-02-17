@@ -21,7 +21,7 @@ export default class DíjController implements IController {
     }
 
     private initializeRoutes() {
-        this.routes.forEach((route: Route<IDíj>) => {
+        this.routes.forEach(route => {
             const routerMethod = (this.router as any)[route.method];
             if (!routerMethod) {
                 throw new Error(`Unsupported HTTP method: ${route.method}`);
@@ -133,7 +133,7 @@ export default class DíjController implements IController {
         }
     };
 
-    public routes = [
+    public routes: Route<IDíj>[] = [
         {
             path: this.path,
             method: "get",

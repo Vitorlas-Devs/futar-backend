@@ -24,7 +24,7 @@ export default class UserController implements IController {
     }
 
     private initializeRoutes() {
-        this.routes.forEach((route: Route<IUser>) => {
+        this.routes.forEach(route => {
             const routerMethod = (this.router as any)[route.method];
             if (!routerMethod) {
                 throw new Error(`Unsupported HTTP method: ${route.method}`);
@@ -126,7 +126,7 @@ export default class UserController implements IController {
         }
     };
 
-    public routes = [
+    public routes: Route<IUser>[] = [
         {
             path: `${this.path}/díjak/:id`,
             method: "get",

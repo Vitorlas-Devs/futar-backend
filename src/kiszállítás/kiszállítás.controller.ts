@@ -21,7 +21,7 @@ export default class KiszállításController implements IController {
     }
 
     private initializeRoutes() {
-        this.routes.forEach((route: Route<IKiszállítás>) => {
+        this.routes.forEach(route => {
             const routerMethod = (this.router as any)[route.method];
             if (!routerMethod) {
                 throw new Error(`Unsupported HTTP method: ${route.method}`);
@@ -131,7 +131,7 @@ export default class KiszállításController implements IController {
         }
     };
 
-    public routes = [
+    public routes: Route<IKiszállítás>[] = [
         {
             path: this.path,
             method: "get",
