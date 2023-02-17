@@ -10,7 +10,6 @@ import authMiddleware from "../middleware/auth.middleware";
 import kiszállításModel from "./kiszállítás.model";
 import validationMiddleware from "../middleware/validation.middleware";
 import { Route, RouteHandler } from "../types/postman";
-import { isNumber } from "class-validator";
 
 export default class KiszállításController implements IController {
     public path = "/kiszallitasok";
