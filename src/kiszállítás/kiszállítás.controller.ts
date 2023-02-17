@@ -1,16 +1,15 @@
-import { NextFunction, Request, Response, Router } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 
 import IController from "../interfaces/controller.interface";
 import CreateKiszállításDto from "./kiszállítás.dto";
 import HttpException from "../exceptions/HttpException";
-import IdNotValidException from "../exceptions/IdNotValidException";
-import IKiszállítás from "./kiszállítás.interface";
+import IKiszállítás, { exampleKiszállítás } from "../kiszállítás/kiszállítás.interface";
 import KiszállításNotFoundException from "../exceptions/KiszállításNotFoundException";
 import IRequestWithUser from "../interfaces/requestWithUser.interface";
-import { Types } from "mongoose";
 import authMiddleware from "../middleware/auth.middleware";
 import kiszállításModel from "./kiszállítás.model";
 import validationMiddleware from "../middleware/validation.middleware";
+import { Route, RouteHandler } from "../types/postman";
 
 export default class KiszállításController implements IController {
     public path = "/kiszallitasok";
@@ -23,11 +22,11 @@ export default class KiszállításController implements IController {
 
     private initializeRoutes() {
         this.routes.forEach(route => {
-            const routerMethod = (this.router as any)[route.method];
-            if (!routerMethod) {
+            const routerMethod = route.method as keyof typeof this.router;
+            if (!this.router[routerMethod]) {
                 throw new Error(`Unsupported HTTP method: ${route.method}`);
             }
-            routerMethod.call(this.router, route.path, route.localMiddleware, route.handler);
+            (<RouteHandler>this.router[routerMethod])(route.path, route.localMiddleware, route.handler);
         });
     }
 
@@ -47,10 +46,10 @@ export default class KiszállításController implements IController {
             const limit = parseInt(req.params.limit);
             const order = req.params.order;
             const sort = parseInt(req.params.sort); // desc: -1  asc: 1
+            const keyword = parseInt(req.params.keyword);
             let kiszállítások = [];
             let count = 0;
-            if (req.params.keyword) {
-                const keyword = parseInt(req.params.keyword);
+            if (keyword) {
                 count = await this.kiszállításM.find({ $or: [{ _id: keyword }, { nap: keyword }, { sorszám: keyword }, { megtettÚt: keyword }] }).count();
                 kiszállítások = await this.kiszállításM
                     .find({ $or: [{ _id: keyword }, { nap: keyword }, { sorszám: keyword }, { megtettÚt: keyword }] })
@@ -132,7 +131,7 @@ export default class KiszállításController implements IController {
         }
     };
 
-    public routes = [
+    public routes: Route<IKiszállítás>[] = [
         {
             path: this.path,
             method: "get",
@@ -144,30 +143,42 @@ export default class KiszállításController implements IController {
             method: "get",
             handler: this.getKiszállításById,
             localMiddleware: [authMiddleware],
+            variable: [{ value: "1", description: "Kiszállítás ID-ja amit lekérünk" }],
         },
         {
             path: `${this.path}/:offset/:limit/:order/:sort/:keyword?`,
             method: "get",
             handler: this.getPaginatedKiszállítások,
             localMiddleware: [authMiddleware],
+            variable: [
+                { value: "0", description: "Hányadik rekordtól kezdjük?" },
+                { value: "10", description: "Lekért rekordok száma" },
+                { value: "sorszám", description: "Melyik mező szerint rendezzük?" },
+                { value: "1", description: "1: növekvő, -1: csökkenő" },
+                { value: "", description: "Keresési kulcsszó" },
+            ],
         },
         {
             path: `${this.path}/:id`,
             method: "patch",
             handler: this.modifyKiszállítás,
             localMiddleware: [authMiddleware, validationMiddleware(CreateKiszállításDto, true)],
+            variable: [{ value: "1", description: "Kiszállítás ID-ja amit módosítunk" }],
+            body: exampleKiszállítás,
         },
         {
             path: `${this.path}/:id`,
             method: "delete",
             handler: this.deleteKiszállítások,
             localMiddleware: [authMiddleware],
+            variable: [{ value: "1", description: "Kiszállítás ID-ja amit törlünk" }],
         },
         {
             path: this.path,
             method: "post",
             handler: this.createKiszállítás,
             localMiddleware: [authMiddleware, validationMiddleware(CreateKiszállításDto)],
+            body: exampleKiszállítás,
         },
     ];
 }
