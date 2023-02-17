@@ -10,6 +10,7 @@ import authMiddleware from "../middleware/auth.middleware";
 import kiszállításModel from "./kiszállítás.model";
 import validationMiddleware from "../middleware/validation.middleware";
 import { Route, RouteHandler } from "../types/postman";
+import { isNumber } from "class-validator";
 
 export default class KiszállításController implements IController {
     public path = "/kiszallitasok";
@@ -46,10 +47,10 @@ export default class KiszállításController implements IController {
             const limit = parseInt(req.params.limit);
             const order = req.params.order;
             const sort = parseInt(req.params.sort); // desc: -1  asc: 1
+            const keyword = parseInt(req.params.keyword);
             let kiszállítások = [];
             let count = 0;
-            if (req.params.keyword) {
-                const keyword = parseInt(req.params.keyword);
+            if (keyword) {
                 count = await this.kiszállításM.find({ $or: [{ _id: keyword }, { nap: keyword }, { sorszám: keyword }, { megtettÚt: keyword }] }).count();
                 kiszállítások = await this.kiszállításM
                     .find({ $or: [{ _id: keyword }, { nap: keyword }, { sorszám: keyword }, { megtettÚt: keyword }] })

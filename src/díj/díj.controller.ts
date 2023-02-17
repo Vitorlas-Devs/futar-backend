@@ -47,10 +47,10 @@ export default class DíjController implements IController {
             const limit = parseInt(req.params.limit);
             const order = req.params.order;
             const sort = parseInt(req.params.sort); // desc: -1  asc: 1
+            const keyword = parseInt(req.params.keyword);
             let díjak = [];
             let count = 0;
-            if (req.params.keyword && req.params.keyword != "") {
-                const keyword = parseInt(req.params.keyword);
+            if (keyword) {
                 count = await this.díj.find({ $or: [{ _id: keyword }, { minKm: keyword }, { minKm: keyword }, { összeg: keyword }] }).count();
                 díjak = await this.díj
                     .find({ $or: [{ _id: keyword }, { minKm: keyword }, { minKm: keyword }, { összeg: keyword }] })
