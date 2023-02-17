@@ -50,10 +50,10 @@ export default class DíjController implements IController {
             let díjak = [];
             let count = 0;
             if (req.params.keyword && req.params.keyword != "") {
-                const myRegex = new RegExp(req.params.keyword, "i"); // i for case insensitive
-                count = await this.díj.find({ $or: [{ title: myRegex }, { content: myRegex }] }).count();
+                const keyword = parseInt(req.params.keyword);
+                count = await this.díj.find({ $or: [{ _id: keyword }, { minKm: keyword }, { minKm: keyword }, { összeg: keyword }] }).count();
                 díjak = await this.díj
-                    .find({ $or: [{ title: myRegex }, { content: myRegex }] })
+                    .find({ $or: [{ _id: keyword }, { minKm: keyword }, { minKm: keyword }, { összeg: keyword }] })
                     .sort(`${sort == -1 ? "-" : ""}${order}`)
                     .skip(offset)
                     .limit(limit);
