@@ -1,5 +1,5 @@
 export default interface IKiszállítás {
-    _id: number;
+    _id?: number;
     nap: number;
     sorszám: number;
     megtettÚt: number;
@@ -7,7 +7,6 @@ export default interface IKiszállítás {
 }
 
 export const exampleKiszállítás: IKiszállítás = {
-    _id: 1,
     nap: 1,
     sorszám: 1,
     megtettÚt: 1,

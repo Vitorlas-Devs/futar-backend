@@ -1,13 +1,12 @@
 export default interface IDíj {
-    _id: number;
+    _id?: number;
     minKm: number;
     maxKm: number;
     összeg: number;
 }
 
 export const exampleDíj: IDíj = {
-    _id: 1,
-    minKm: 0,
-    maxKm: 100,
-    összeg: 1000,
+    minKm: 100,
+    maxKm: 110,
+    összeg: 11000,
 };

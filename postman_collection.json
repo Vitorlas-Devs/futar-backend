@@ -144,7 +144,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"minKm\": 0,\n    \"maxKm\": 100,\n    \"összeg\": 1000\n}",
+              "raw": "{\n    \"minKm\": 100,\n    \"maxKm\": 110,\n    \"összeg\": 11000\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -218,7 +218,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"minKm\": 0,\n    \"maxKm\": 100,\n    \"összeg\": 1000\n}",
+              "raw": "{\n    \"minKm\": 100,\n    \"maxKm\": 110,\n    \"összeg\": 11000\n}",
               "options": {
                 "raw": {
                   "language": "json"
