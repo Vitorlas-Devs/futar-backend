@@ -484,76 +484,6 @@
       "name": "User",
       "item": [
         {
-          "name": "Get All Díjak Of User By ID",
-          "request": {
-            "method": "get",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:5000/users/díjak/:id",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "5000",
-              "path": [
-                "",
-                "users",
-                "díjak",
-                ":id"
-              ],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "1",
-                  "description": "A user ID-ja aminek a díjait lekérdezzük"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get All Díjak Of Logged User",
-          "request": {
-            "method": "get",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:5000/users/díjak/",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "5000",
-              "path": [
-                "",
-                "users",
-                "díjak",
-                ""
-              ],
-              "variable": []
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Get User By Id",
           "request": {
             "method": "get",
@@ -627,7 +557,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"name\": \"student001\",\n    \"email\": \"student001@jedlik.eu\",\n    \"auto_login\": false,\n    \"picture\": \"https://jedlik.eu/images/avatars/student001.jpg\",\n    \"password\": \"student001\",\n    \"roles\": [\n        \"student\"\n    ]\n}",
+              "raw": "{\n    \"name\": \"student001\",\n    \"email\": \"student001@jedlik.eu\",\n    \"auto_login\": false,\n    \"email_verified\": true,\n    \"picture\": \"https://jedlik.eu/images/avatars/student001.jpg\",\n    \"password\": \"student001\",\n    \"roles\": [\n        \"student\"\n    ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -706,7 +636,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"name\": \"student001\",\n    \"email\": \"student001@jedlik.eu\",\n    \"auto_login\": false,\n    \"picture\": \"https://jedlik.eu/images/avatars/student001.jpg\",\n    \"password\": \"student001\",\n    \"roles\": [\n        \"student\"\n    ]\n}",
+              "raw": "{\n    \"name\": \"student001\",\n    \"email\": \"student001@jedlik.eu\",\n    \"auto_login\": false,\n    \"email_verified\": true,\n    \"picture\": \"https://jedlik.eu/images/avatars/student001.jpg\",\n    \"password\": \"student001\",\n    \"roles\": [\n        \"student\"\n    ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -737,7 +667,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"name\": \"student001\",\n    \"email\": \"student001@jedlik.eu\",\n    \"auto_login\": false,\n    \"picture\": \"https://jedlik.eu/images/avatars/student001.jpg\",\n    \"password\": \"student001\",\n    \"roles\": [\n        \"student\"\n    ]\n}",
+              "raw": "{\n    \"name\": \"student001\",\n    \"email\": \"student001@jedlik.eu\",\n    \"auto_login\": false,\n    \"email_verified\": true,\n    \"picture\": \"https://jedlik.eu/images/avatars/student001.jpg\",\n    \"password\": \"student001\",\n    \"roles\": [\n        \"student\"\n    ]\n}",
               "options": {
                 "raw": {
                   "language": "json"

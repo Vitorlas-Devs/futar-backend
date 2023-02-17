@@ -1,7 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { Types } from "mongoose";
 import IController from "../interfaces/controller.interface";
-import IRequestWithUser from "../interfaces/requestWithUser.interface";
 import authMiddleware from "../middleware/auth.middleware";
 import validationMiddleware from "../middleware/validation.middleware";
 import CreateUserDto from "./user.dto";
@@ -9,7 +8,6 @@ import UserNotFoundException from "../exceptions/UserNotFoundException";
 import IdNotValidException from "../exceptions/IdNotValidException";
 import HttpException from "../exceptions/HttpException";
 import userModel from "./user.model";
-import díjModel from "../díj/díj.model";
 import IUser, { exampleUser } from "./user.interface";
 import { Route, RouteHandler } from "../types/postman";
 
@@ -17,7 +15,6 @@ export default class UserController implements IController {
     public path = "/users";
     public router = Router();
     private user = userModel;
-    private díj = díjModel;
 
     constructor() {
         this.initializeRoutes();
@@ -51,7 +48,7 @@ export default class UserController implements IController {
                 // if (request.query.withDíjak === "true") {
                 //     userQuery.populate("díjak").exec();
                 // }
-                const user = await this.user.findById(id).populate("díjak");
+                const user = await this.user.findById(id);
                 if (user) {
                     res.send(user);
                 } else {
@@ -102,44 +99,7 @@ export default class UserController implements IController {
         }
     };
 
-    private getAllDíjakOfLoggedUser = async (req: IRequestWithUser, res: Response, next: NextFunction) => {
-        try {
-            const id = req.user._id; // Stored user's ID in Cookie
-            const díjak = await this.díj.find({ author: id });
-            res.send(díjak);
-        } catch (error) {
-            next(new HttpException(400, error.message));
-        }
-    };
-
-    private getAllDíjakOfUserByID = async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            if (Types.ObjectId.isValid(req.params.id)) {
-                const id: string = req.params.id;
-                const díjak = await this.díj.find({ author: id });
-                res.send(díjak);
-            } else {
-                next(new IdNotValidException(req.params.id));
-            }
-        } catch (error) {
-            next(new HttpException(400, error.message));
-        }
-    };
-
     public routes: Route<IUser>[] = [
-        {
-            path: `${this.path}/díjak/:id`,
-            method: "get",
-            handler: this.getAllDíjakOfUserByID,
-            localMiddleware: [authMiddleware],
-            variable: [{ value: "1", description: "A user ID-ja aminek a díjait lekérdezzük" }],
-        },
-        {
-            path: `${this.path}/díjak/`,
-            method: "get",
-            handler: this.getAllDíjakOfLoggedUser,
-            localMiddleware: [authMiddleware],
-        },
         {
             path: `${this.path}/:id`,
             method: "get",
