@@ -1,16 +1,20 @@
-import { Request, Response, NextFunction, RequestHandler } from "express";
+import { Router, RequestHandler, IRouterMatcher, RequestHandler } from "express";
 import { Method } from "express-serve-static-core";
 
-export type Variable = {
+type Variable = {
     key?: string;
     value: string;
     description: string;
 };
 
+type PathParams = string | RegExp | Array<string | RegExp>;
+
+export type RouteHandler = ((path: PathParams, ...handlers: RequestHandler[]) => Router) & IRouterMatcher<Router>;
+
 export type Route<T> = {
     method: Method;
     path: string;
-    handler: (req: Request, res: Response, next?: NextFunction) => Promise<void> | void;
+    handler: RequestHandler;
     localMiddleware?: RequestHandler[];
     variable?: Variable[];
     body?: T;

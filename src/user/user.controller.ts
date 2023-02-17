@@ -11,7 +11,7 @@ import HttpException from "../exceptions/HttpException";
 import userModel from "./user.model";
 import díjModel from "../díj/díj.model";
 import IUser, { exampleUser } from "./user.interface";
-import { Route } from "../types/postman";
+import { Route, RouteHandler } from "../types/postman";
 
 export default class UserController implements IController {
     public path = "/users";
@@ -25,11 +25,11 @@ export default class UserController implements IController {
 
     private initializeRoutes() {
         this.routes.forEach(route => {
-            const routerMethod = (this.router as any)[route.method];
-            if (!routerMethod) {
+            const routerMethod = route.method as keyof typeof this.router;
+            if (!this.router[routerMethod]) {
                 throw new Error(`Unsupported HTTP method: ${route.method}`);
             }
-            routerMethod.call(this.router, route.path, route.localMiddleware, route.handler);
+            (<RouteHandler>this.router[routerMethod])(route.path, route.localMiddleware, route.handler);
         });
     }
 

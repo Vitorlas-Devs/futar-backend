@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response, Router } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 
 import IController from "../interfaces/controller.interface";
 import CreateKiszállításDto from "./kiszállítás.dto";
@@ -9,7 +9,7 @@ import IRequestWithUser from "../interfaces/requestWithUser.interface";
 import authMiddleware from "../middleware/auth.middleware";
 import kiszállításModel from "./kiszállítás.model";
 import validationMiddleware from "../middleware/validation.middleware";
-import { Route } from "../types/postman";
+import { Route, RouteHandler } from "../types/postman";
 
 export default class KiszállításController implements IController {
     public path = "/kiszallitasok";
@@ -22,11 +22,11 @@ export default class KiszállításController implements IController {
 
     private initializeRoutes() {
         this.routes.forEach(route => {
-            const routerMethod = (this.router as any)[route.method];
-            if (!routerMethod) {
+            const routerMethod = route.method as keyof typeof this.router;
+            if (!this.router[routerMethod]) {
                 throw new Error(`Unsupported HTTP method: ${route.method}`);
             }
-            routerMethod.call(this.router, route.path, route.localMiddleware, route.handler);
+            (<RouteHandler>this.router[routerMethod])(route.path, route.localMiddleware, route.handler);
         });
     }
 
