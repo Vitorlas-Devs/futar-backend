@@ -155,7 +155,7 @@ export default class DíjController implements IController {
             variable: [
                 { value: "0", description: "Hányadik rekordtól kezdjük?" },
                 { value: "10", description: "Lekért rekordok száma" },
-                { value: "sorszám", description: "Melyik mező szerint rendezzük?" },
+                { value: "összeg", description: "Melyik mező szerint rendezzük?" },
                 { value: "1", description: "1: növekvő, -1: csökkenő" },
                 { value: "", description: "Keresési kulcsszó" },
             ],
