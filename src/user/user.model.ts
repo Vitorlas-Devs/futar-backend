@@ -11,6 +11,9 @@ const userSchema = new Schema<IUser>(
             type: Boolean,
             required: true,
         },
+        email_verified: {
+            type: Boolean,
+        },
         name: {
             type: String,
             required: true,

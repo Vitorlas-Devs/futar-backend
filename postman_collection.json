@@ -16,7 +16,12 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "http://localhost:5000/dij",
@@ -26,8 +31,10 @@
               ],
               "port": "5000",
               "path": [
-                "/dij"
-              ]
+                "",
+                "dij"
+              ],
+              "variable": []
             }
           },
           "response": []
@@ -39,7 +46,12 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "http://localhost:5000/dij/:id",
@@ -49,7 +61,16 @@
               ],
               "port": "5000",
               "path": [
-                "/dij/:id"
+                "",
+                "dij",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Díj ID-ja amit lekérünk"
+                }
               ]
             }
           },
@@ -62,7 +83,12 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "http://localhost:5000/dij/:offset/:limit/:order/:sort/:keyword?",
@@ -72,7 +98,40 @@
               ],
               "port": "5000",
               "path": [
-                "/dij/:offset/:limit/:order/:sort/:keyword?"
+                "",
+                "dij",
+                ":offset",
+                ":limit",
+                ":order",
+                ":sort",
+                ":keyword"
+              ],
+              "variable": [
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Hányadik rekordtól kezdjük?"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Lekért rekordok száma"
+                },
+                {
+                  "key": "order",
+                  "value": "összeg",
+                  "description": "Melyik mező szerint rendezzük?"
+                },
+                {
+                  "key": "sort",
+                  "value": "1",
+                  "description": "1: növekvő, -1: csökkenő"
+                },
+                {
+                  "key": "keyword",
+                  "value": "",
+                  "description": "Keresési kulcsszó"
+                }
               ]
             }
           },
@@ -85,7 +144,12 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n    \"minKm\": 100,\n    \"maxKm\": 110,\n    \"összeg\": 11000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "http://localhost:5000/dij/:id",
@@ -95,7 +159,16 @@
               ],
               "port": "5000",
               "path": [
-                "/dij/:id"
+                "",
+                "dij",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Díj ID-ja amit módosítunk"
+                }
               ]
             }
           },
@@ -108,7 +181,12 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "http://localhost:5000/dij/:id",
@@ -118,7 +196,16 @@
               ],
               "port": "5000",
               "path": [
-                "/dij/:id"
+                "",
+                "dij",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Díj ID-ja amit törlünk"
+                }
               ]
             }
           },
@@ -131,7 +218,12 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n    \"minKm\": 100,\n    \"maxKm\": 110,\n    \"összeg\": 11000\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "http://localhost:5000/dij",
@@ -141,8 +233,10 @@
               ],
               "port": "5000",
               "path": [
-                "/dij"
-              ]
+                "",
+                "dij"
+              ],
+              "variable": []
             }
           },
           "response": []
@@ -159,7 +253,12 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "http://localhost:5000/kiszallitasok",
@@ -169,8 +268,10 @@
               ],
               "port": "5000",
               "path": [
-                "/kiszallitasok"
-              ]
+                "",
+                "kiszallitasok"
+              ],
+              "variable": []
             }
           },
           "response": []
@@ -182,7 +283,12 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "http://localhost:5000/kiszallitasok/:id",
@@ -192,7 +298,16 @@
               ],
               "port": "5000",
               "path": [
-                "/kiszallitasok/:id"
+                "",
+                "kiszallitasok",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Kiszállítás ID-ja amit lekérünk"
+                }
               ]
             }
           },
@@ -205,7 +320,12 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "http://localhost:5000/kiszallitasok/:offset/:limit/:order/:sort/:keyword?",
@@ -215,7 +335,40 @@
               ],
               "port": "5000",
               "path": [
-                "/kiszallitasok/:offset/:limit/:order/:sort/:keyword?"
+                "",
+                "kiszallitasok",
+                ":offset",
+                ":limit",
+                ":order",
+                ":sort",
+                ":keyword"
+              ],
+              "variable": [
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Hányadik rekordtól kezdjük?"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Lekért rekordok száma"
+                },
+                {
+                  "key": "order",
+                  "value": "sorszám",
+                  "description": "Melyik mező szerint rendezzük?"
+                },
+                {
+                  "key": "sort",
+                  "value": "1",
+                  "description": "1: növekvő, -1: csökkenő"
+                },
+                {
+                  "key": "keyword",
+                  "value": "",
+                  "description": "Keresési kulcsszó"
+                }
               ]
             }
           },
@@ -228,7 +381,12 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n    \"nap\": 1,\n    \"sorszám\": 1,\n    \"megtettÚt\": 1,\n    \"díj\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "http://localhost:5000/kiszallitasok/:id",
@@ -238,7 +396,16 @@
               ],
               "port": "5000",
               "path": [
-                "/kiszallitasok/:id"
+                "",
+                "kiszallitasok",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Kiszállítás ID-ja amit módosítunk"
+                }
               ]
             }
           },
@@ -251,7 +418,12 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "http://localhost:5000/kiszallitasok/:id",
@@ -261,7 +433,16 @@
               ],
               "port": "5000",
               "path": [
-                "/kiszallitasok/:id"
+                "",
+                "kiszallitasok",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "Kiszállítás ID-ja amit törlünk"
+                }
               ]
             }
           },
@@ -274,7 +455,12 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n    \"nap\": 1,\n    \"sorszám\": 1,\n    \"megtettÚt\": 1,\n    \"díj\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "http://localhost:5000/kiszallitasok",
@@ -284,8 +470,347 @@
               ],
               "port": "5000",
               "path": [
-                "/kiszallitasok"
+                "",
+                "kiszallitasok"
+              ],
+              "variable": []
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Get User By Id",
+          "request": {
+            "method": "get",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/users/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "",
+                "users",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "A user ID-ja akit lekérdezzük"
+                }
               ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "get",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "",
+                "users"
+              ],
+              "variable": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modify User",
+          "request": {
+            "method": "patch",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"student001\",\n    \"email\": \"student001@jedlik.eu\",\n    \"auto_login\": false,\n    \"email_verified\": true,\n    \"picture\": \"https://jedlik.eu/images/avatars/student001.jpg\",\n    \"password\": \"student001\",\n    \"roles\": [\n        \"student\"\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/users/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "",
+                "users",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "A user ID-ja akit módosítunk"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "delete",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/users/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "",
+                "users",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "A user ID-ja akit törölünk"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Registration",
+          "request": {
+            "method": "post",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"student001\",\n    \"email\": \"student001@jedlik.eu\",\n    \"auto_login\": false,\n    \"email_verified\": true,\n    \"picture\": \"https://jedlik.eu/images/avatars/student001.jpg\",\n    \"password\": \"student001\",\n    \"roles\": [\n        \"student\"\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "",
+                "auth",
+                "register"
+              ],
+              "variable": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "post",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"student001\",\n    \"email\": \"student001@jedlik.eu\",\n    \"auto_login\": false,\n    \"email_verified\": true,\n    \"picture\": \"https://jedlik.eu/images/avatars/student001.jpg\",\n    \"password\": \"student001\",\n    \"roles\": [\n        \"student\"\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "",
+                "auth",
+                "login"
+              ],
+              "variable": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Auto Login",
+          "request": {
+            "method": "post",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/auth/autologin",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "",
+                "auth",
+                "autologin"
+              ],
+              "variable": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Close App",
+          "request": {
+            "method": "post",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/auth/closeapp",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "",
+                "auth",
+                "closeapp"
+              ],
+              "variable": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "post",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/auth/logout",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "",
+                "auth",
+                "logout"
+              ],
+              "variable": []
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login And Register With Google",
+          "request": {
+            "method": "post",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/auth/google",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "",
+                "auth",
+                "google"
+              ],
+              "variable": []
             }
           },
           "response": []

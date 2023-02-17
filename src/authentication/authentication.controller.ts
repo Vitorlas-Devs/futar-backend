@@ -13,7 +13,8 @@ import IController from "../interfaces/controller.interface";
 import IGoogleUserInfo from "../interfaces/googleUserInfo.interface";
 import IRequestWithUser from "../interfaces/requestWithUser.interface";
 import ISession from "../interfaces/session.interface";
-import IUser from "../user/user.interface";
+import IUser, { exampleUser } from "../user/user.interface";
+import { Route, RouteHandler } from "../types/postman";
 
 export default class AuthenticationController implements IController {
     public path = "/auth";
@@ -25,12 +26,13 @@ export default class AuthenticationController implements IController {
     }
 
     private initializeRoutes() {
-        this.router.post(`${this.path}/register`, validationMiddleware(CreateUserDto), this.registration);
-        this.router.post(`${this.path}/login`, validationMiddleware(LogInDto), this.login);
-        this.router.post(`${this.path}/autologin`, this.autoLogin);
-        this.router.post(`${this.path}/closeapp`, this.closeApp);
-        this.router.post(`${this.path}/logout`, this.logout);
-        this.router.post(`${this.path}/google`, this.loginAndRegisterWithGoogle);
+        this.routes.forEach(route => {
+            const routerMethod = route.method as keyof typeof this.router;
+            if (!this.router[routerMethod]) {
+                throw new Error(`Unsupported HTTP method: ${route.method}`);
+            }
+            (<RouteHandler>this.router[routerMethod])(route.path, route.localMiddleware || [], route.handler);
+        });
     }
 
     private registration = async (req: Request, res: Response, next: NextFunction) => {
@@ -201,4 +203,41 @@ export default class AuthenticationController implements IController {
             next(new HttpException(400, error.message));
         }
     };
+
+    public routes: Route<IUser>[] = [
+        {
+            path: `${this.path}/register`,
+            method: "post",
+            handler: this.registration,
+            localMiddleware: [validationMiddleware(CreateUserDto)],
+            body: exampleUser,
+        },
+        {
+            path: `${this.path}/login`,
+            method: "post",
+            handler: this.login,
+            localMiddleware: [validationMiddleware(LogInDto)],
+            body: exampleUser,
+        },
+        {
+            path: `${this.path}/autologin`,
+            method: "post",
+            handler: this.autoLogin,
+        },
+        {
+            path: `${this.path}/closeapp`,
+            method: "post",
+            handler: this.closeApp,
+        },
+        {
+            path: `${this.path}/logout`,
+            method: "post",
+            handler: this.logout,
+        },
+        {
+            path: `${this.path}/google`,
+            method: "post",
+            handler: this.loginAndRegisterWithGoogle,
+        },
+    ];
 }
