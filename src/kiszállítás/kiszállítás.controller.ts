@@ -106,10 +106,7 @@ export default class KiszállításController implements IController {
             const kiszállításData: IKiszállítás = req.body;
             const lastKiszállítás = await this.kiszállításM.findOne().sort({ _id: -1 });
             kiszállításData._id = lastKiszállítás ? lastKiszállítás._id + 1 : 1;
-            const createdKiszállítás = new this.kiszállításM({
-                ...kiszállításData,
-            });
-            const savedKiszállítás = await createdKiszállítás.save();
+            const savedKiszállítás = await this.kiszállításM.create(kiszállításData);
             await savedKiszállítás.populate("díj", "-_id");
             res.send(savedKiszállítás);
         } catch (error) {

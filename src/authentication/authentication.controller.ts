@@ -50,7 +50,7 @@ export default class AuthenticationController implements IController {
                 user.password = undefined;
                 req.session.regenerate(error => {
                     if (error) {
-                        next(new HttpException(400, error.message)); // to do
+                        next(new HttpException(400, error.message));
                     }
                     console.log("regenerate ok");
                     (req.session as ISession).user_id = user._id as string;
@@ -74,15 +74,6 @@ export default class AuthenticationController implements IController {
             } else {
                 next(new HttpException(404, "Please log in!"));
             }
-            // req.sessionStore.get(req.session.id, (error, s: ISession) => {
-            //     if (error || !s.user_email) {
-            //         next(new HttpException(404, "Please log in!"));
-            //     }
-            //     if (user && s.user_email) {
-            //         (req.session as ISession).isLoggedIn = true;
-            //         res.send(user);
-            //     }
-            // });
         } else {
             next(new HttpException(404, "Please log in!"));
         }
@@ -98,9 +89,8 @@ export default class AuthenticationController implements IController {
                     user.password = undefined;
                     req.session.regenerate(error => {
                         if (error) {
-                            next(new HttpException(400, error.message)); // to do
+                            next(new HttpException(400, error.message));
                         }
-                        // console.log("regenerate ok");
                         (req.session as ISession).user_id = user._id as string;
                         (req.session as ISession).user_email = user.email;
                         (req.session as ISession).isLoggedIn = true;
@@ -139,7 +129,6 @@ export default class AuthenticationController implements IController {
                 if (err) {
                     console.log("Error at destroyed session");
                 }
-                // console.log("Session is destroyed!");
             });
         }
         res.sendStatus(200);
@@ -163,7 +152,7 @@ export default class AuthenticationController implements IController {
                         if (user) {
                             req.session.regenerate(error => {
                                 if (error) {
-                                    next(new HttpException(400, error.message)); // to do
+                                    next(new HttpException(400, error.message));
                                 }
                                 console.log("regenerate ok");
                                 (req.session as ISession).user_id = user._id as string;
@@ -184,7 +173,7 @@ export default class AuthenticationController implements IController {
                                 .then(user => {
                                     req.session.regenerate(error => {
                                         if (error) {
-                                            next(new HttpException(400, error.message)); // to do
+                                            next(new HttpException(400, error.message));
                                         }
                                         (req.session as ISession).user_id = user._id as string;
                                         (req.session as ISession).user_email = user.email as string;

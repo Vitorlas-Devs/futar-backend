@@ -32,10 +32,9 @@ export default class DíjController implements IController {
 
     private getAllDíj = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            // const díjak = await this.díj.find().populate("author", "-password");
             const count = await this.díj.countDocuments();
             const díjak = await this.díj.find();
-            res.send({ count: count, díjak: díjak });
+            res.send({ count, díjak });
         } catch (error) {
             next(new HttpException(400, error.message));
         }
@@ -119,8 +118,6 @@ export default class DíjController implements IController {
             const id = req.params.id;
             const successResponse = await this.díj.findByIdAndDelete(id);
             if (successResponse) {
-                // const count = await this.díj.countDocuments();
-                // res.send({ count: count, status: 200 });
                 res.sendStatus(200);
             } else {
                 next(new DíjNotFoundException(id));

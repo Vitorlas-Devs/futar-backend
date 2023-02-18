@@ -44,10 +44,6 @@ export default class UserController implements IController {
         try {
             const id = req.params.id;
             if (Types.ObjectId.isValid(id)) {
-                // const userQuery = this.user.findById(id);
-                // if (request.query.withDíjak === "true") {
-                //     userQuery.populate("díjak").exec();
-                // }
                 const user = await this.user.findById(id);
                 if (user) {
                     res.send(user);
