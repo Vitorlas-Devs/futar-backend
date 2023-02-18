@@ -9,9 +9,10 @@ const díjSchema = new Schema<IDíj>(
             type: Number,
             required: true,
             validate: {
-                validator: function (Rule: any) {
-                    return Rule.required().max(Rule.valueOfField("minKm"));
+                validator: function (v: number) {
+                    return v > this.minKm;
                 },
+                message: "maxKm must be greater than minKm",
             },
         },
         összeg: { type: Number, required: true },

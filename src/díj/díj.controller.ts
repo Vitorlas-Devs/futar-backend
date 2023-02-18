@@ -89,7 +89,8 @@ export default class DíjController implements IController {
         try {
             const id = req.params.id;
             const díjData: IDíj = req.body;
-            const díj = await this.díj.findByIdAndUpdate(id, díjData, { new: true });
+            const options = { new: true, runValidators: true };
+            const díj = await this.díj.findByIdAndUpdate(id, díjData, options);
             if (díj) {
                 res.send(díj);
             } else {
@@ -105,13 +106,9 @@ export default class DíjController implements IController {
             const díjData: IDíj = req.body;
             const lastDíj = await this.díj.findOne().sort({ _id: -1 });
             díjData._id = lastDíj ? lastDíj._id + 1 : 1;
-            const createdDíj = new this.díj({
-                ...díjData,
-            });
-            const savedDíj = await createdDíj.save();
+            const savedDíj = await this.díj.create(díjData);
             const count = await this.díj.countDocuments();
             res.send({ count: count, díj: savedDíj });
-            // res.send(savedDíj);
         } catch (error) {
             next(new HttpException(400, error.message));
         }
