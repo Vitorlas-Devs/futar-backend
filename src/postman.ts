@@ -7,16 +7,30 @@ import { Route } from "./types/postman";
 export default class PostmanCollectionCreator {
     public collectionString: string;
 
+    // ██████╗  ██████╗ ███████╗████████╗███╗   ███╗ █████╗ ███╗   ██╗
+    // ██╔══██╗██╔═══██╗██╔════╝╚══██╔══╝████╗ ████║██╔══██╗████╗  ██║
+    // ██████╔╝██║   ██║███████╗   ██║   ██╔████╔██║███████║██╔██╗ ██║
+    // ██╔═══╝ ██║   ██║╚════██║   ██║   ██║╚██╔╝██║██╔══██║██║╚██╗██║
+    // ██║     ╚██████╔╝███████║   ██║   ██║ ╚═╝ ██║██║  ██║██║ ╚████║ ╔══ Creator
+    // ╚═╝      ╚═════╝ ╚══════╝   ╚═╝   ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝═╝
+    //
+    // Notes:
+    // ``````
+    // × The Postman collection is created from the controllers and their routes.
+    // × Every controller has to have a routes array.
+    // × All of the variables are postman path variables. Query parameters we didn't touch.
+    // × Postman allows to create examples for the requests. We don't.
+    // × Fun fact: GPT stands for "Generative Postman Tools".
+
     constructor() {
         this.createCollection();
     }
 
+    // initialize the collection object
     private collection = {
         info: {
-            _postman_id: "12ec885d-0aa9-453d-9729-7f75305c835f",
             name: "Futár",
             schema: "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-            _exporter_id: "23370412",
         },
         item: <any>[],
     };
@@ -28,12 +42,12 @@ export default class PostmanCollectionCreator {
         controllers.forEach(controller => {
             // This code gets the name of the controller by removing the word "Controller"
             // from the end of the constructor name. For example, if the constructor name
-            // is "UserController", the controller name will be "User".
+            // is "UserController", the controller name will be "User", duh.
             const controllerName = controller.constructor.name.replace("Controller", "");
 
-            // This function is used to add an item to the controller's item list.
-            // The controller's name is passed in as a parameter.
-            const controllerItem = {
+            // This is an empty folder.
+            // The name of the folder is the controller's name.
+            const collectionFolder = {
                 name: controllerName,
                 item: <any>[],
             };
@@ -42,20 +56,20 @@ export default class PostmanCollectionCreator {
                 // destructure the route object to get the method, path, variable, handler, and body
                 const { method, path, variable, handler, body } = route;
 
-                // destructure the handler object to get the name
+                // destructure the handler object too 🙄
                 const { name } = handler;
 
-                // this code converts camelCase to sentence case
+                // this code converts "camelCase" to "sentence case"
                 const requestName = name.replace(/([a-z])([A-Z])|^./g, (match, p1, p2) => {
                     return p1 ? p1 + " " + p2 : match.toUpperCase();
                 });
 
                 // This code removes the question mark from the path, returning only the parameters.
                 // For example, if the path is "/api/user/:id?", the params will be "/api/user/:id".
-                // This is necessary because Postman does not support optional parameters.
+                // This is necessary because Postman does not support optional parameters, and thinks they are query parameters.
                 const params = path.replace(/\?/g, "");
 
-                // This code creates the variables array for the Postman route, which are in the path.
+                // This code creates the variables object from the path.
                 const variables = (variable || []).map((v, i) => {
                     // It maps through the variable array and returns an object with the value, description, and key
                     const { value, description } = v;
@@ -72,11 +86,8 @@ export default class PostmanCollectionCreator {
                 const bodyRaw = route.body ? JSON.stringify(body, (key, value) => (key === "_id" ? undefined : value), 4) : "";
 
                 // This code is used to generate the route item for the postman collection.
-                // It will create a route item that contains the name, request, and response of a request.
-                // It will create the request for the route item by taking in the name, method, path, body, and params.
-                // It will also create the variables for the request by taking in the path.
-                // It will then create the route item with the route name, request, and response.
-                // The route item will be returned.
+                // It will create a route item that contains the name, request, and body.
+                // It will also create path variables for the request from the path.
                 const routeItem = {
                     name: requestName,
                     request: {
@@ -102,12 +113,15 @@ export default class PostmanCollectionCreator {
                     },
                     response: <any>[],
                 };
-                // This code adds the route item to the controller item.
-                controllerItem.item.push(routeItem);
+
+                // This code adds the route item to the folder.
+                collectionFolder.item.push(routeItem);
             });
+
             // This code adds the folder to the collection.
-            this.collection.item.push(controllerItem);
+            this.collection.item.push(collectionFolder);
         });
+
         this.collectionString = JSON.stringify(this.collection, null, 2);
     }
 }
