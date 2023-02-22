@@ -7,9 +7,9 @@ import errorMiddleware from "./middleware/error.middleware";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import morgan from "morgan";
+import swaggerUi, { SwaggerUiOptions } from "swagger-ui-express";
+import * as swaggerDocument from "./swagger.json";
 import { config } from "dotenv";
-import PostmanCollectionCreator from "./postman";
-import fs from "fs";
 
 export default class App {
     public app: express.Application;
@@ -21,7 +21,6 @@ export default class App {
         this.initializeMiddlewares();
         this.initializeControllers(controllers);
         this.initializeErrorHandling();
-        this.createPostmanCollection();
     }
 
     public listen(): void {
@@ -36,6 +35,19 @@ export default class App {
     }
 
     private initializeMiddlewares() {
+        const options: SwaggerUiOptions = {
+            swaggerOptions: {
+                docExpansion: "list",
+                displayRequestDuration: true,
+                defaultModelsExpandDepth: 3,
+                defaultModelExpandDepth: 3,
+                tryItOutEnabled: true,
+                showCommonExtensions: true,
+                // filter: true,
+            },
+        };
+        this.app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
+
         this.app.use(express.json()); // body-parser middleware, for read requests body
         this.app.use(cookieParser()); // cookie-parser middleware, for read requests cookies
 
@@ -102,12 +114,7 @@ export default class App {
         });
         mongoose.connection.on("connected", () => {
             console.log("Connected to MongoDB server.");
+            this.listen();
         });
-    }
-
-    public createPostmanCollection() {
-        const collectionCreator = new PostmanCollectionCreator();
-        fs.writeFileSync("postman_collection.json", collectionCreator.collectionString);
-        console.log("Postman collection created");
     }
 }
