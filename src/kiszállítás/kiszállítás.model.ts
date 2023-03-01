@@ -1,6 +1,7 @@
 // https://mongoosejs.com/docs/validation.html
 
-import { Schema, model } from "mongoose";
+import { model, Schema } from "mongoose";
+
 import IKiszállítás from "./kiszállítás.interface";
 
 const kiszállításSchema = new Schema<IKiszállítás>(

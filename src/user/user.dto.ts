@@ -1,4 +1,5 @@
-import { IsArray, ArrayNotEmpty, IsString, IsBoolean, IsEmail } from "class-validator";
+import { ArrayNotEmpty, IsArray, IsBoolean, IsEmail, IsString } from "class-validator";
+
 // import { Match } from "./match.decorator";
 import IUser from "./user.interface";
 

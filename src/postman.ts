@@ -1,8 +1,8 @@
-import KiszállításController from "./kiszállítás/kiszállítás.controller";
-import DíjController from "./díj/díj.controller";
-import UserController from "./user/user.controller";
 import AuthenticationController from "./authentication/authentication.controller";
+import DíjController from "./díj/díj.controller";
+import KiszállításController from "./kiszállítás/kiszállítás.controller";
 import { Route } from "./types/postman";
+import UserController from "./user/user.controller";
 
 export default class PostmanCollectionCreator {
     public collectionString: string;

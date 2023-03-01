@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IsNumber, IsPositive, IsNotEmpty } from "class-validator";
+import { IsNotEmpty, IsNumber, IsPositive } from "class-validator";
 
 export default class CreateDíjDto {
     @IsNumber()

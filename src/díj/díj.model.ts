@@ -1,4 +1,5 @@
-import { Schema, model } from "mongoose";
+import { model, Schema } from "mongoose";
+
 import IDíj from "./díj.interface";
 
 const díjSchema = new Schema<IDíj>(

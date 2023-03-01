@@ -1,4 +1,5 @@
-import { Router, Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response, Router } from "express";
+
 import DíjNotFoundException from "../exceptions/DíjNotFoundException";
 import HttpException from "../exceptions/HttpException";
 import IController from "../interfaces/controller.interface";
@@ -6,10 +7,10 @@ import IRequestWithUser from "../interfaces/requestWithUser.interface";
 import authMiddleware from "../middleware/auth.middleware";
 import roleCheckMiddleware from "../middleware/roleCheckMiddleware";
 import validationMiddleware from "../middleware/validation.middleware";
+import { Route, RouteHandler } from "../types/postman";
 import CreateDíjDto from "./díj.dto";
 import IDíj, { exampleDíj } from "./díj.interface";
 import díjModel from "./díj.model";
-import { Route, RouteHandler } from "../types/postman";
 
 export default class DíjController implements IController {
     public path = "/dij";
