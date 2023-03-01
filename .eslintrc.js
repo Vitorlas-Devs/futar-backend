@@ -20,6 +20,7 @@ module.exports = {
         "plugin:@typescript-eslint/recommended", // Uses the recommended rules from the @typescript-eslint/eslint-plugin
         "plugin:prettier/recommended", // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
     ],
+    plugins: ["simple-import-sort"],
     rules: {
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
@@ -29,6 +30,8 @@ module.exports = {
         // "arrow-parens": ["error", "as-needed"],
         // "@typescript-eslint/no-inferrable-types": "off",
         // "@typescript-eslint/explicit-module-boundary-types": "off",
+        "simple-import-sort/imports": "warn",
+        "simple-import-sort/exports": "warn",
     },
     overrides: [
         {

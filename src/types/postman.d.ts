@@ -1,4 +1,4 @@
-import { Router, RequestHandler, IRouterMatcher, RequestHandler } from "express";
+import { IRouterMatcher, RequestHandler, RequestHandler, Router } from "express";
 import { Method } from "express-serve-static-core";
 
 type Variable = {

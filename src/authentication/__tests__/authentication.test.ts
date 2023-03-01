@@ -1,7 +1,9 @@
 import "dotenv/config";
+
+import request from "supertest";
+
 import App from "../../app";
 import AuthenticationController from "../../authentication/authentication.controller";
-import request from "supertest";
 
 let server: Express.Application;
 

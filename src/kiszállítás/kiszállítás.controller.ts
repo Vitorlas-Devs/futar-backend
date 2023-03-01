@@ -1,15 +1,15 @@
-import { Router, Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response, Router } from "express";
 
-import IController from "../interfaces/controller.interface";
-import CreateKiszállításDto from "./kiszállítás.dto";
 import HttpException from "../exceptions/HttpException";
-import IKiszállítás, { exampleKiszállítás } from "../kiszállítás/kiszállítás.interface";
 import KiszállításNotFoundException from "../exceptions/KiszállításNotFoundException";
+import IController from "../interfaces/controller.interface";
 import IRequestWithUser from "../interfaces/requestWithUser.interface";
+import IKiszállítás, { exampleKiszállítás } from "../kiszállítás/kiszállítás.interface";
 import authMiddleware from "../middleware/auth.middleware";
-import kiszállításModel from "./kiszállítás.model";
 import validationMiddleware from "../middleware/validation.middleware";
 import { Route, RouteHandler } from "../types/postman";
+import CreateKiszállításDto from "./kiszállítás.dto";
+import kiszállításModel from "./kiszállítás.model";
 
 export default class KiszállításController implements IController {
     public path = "/kiszallitasok";

@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+
 import HttpException from "../exceptions/HttpException";
 
 export default async function errorMiddleware(error: HttpException, req: Request, res: Response, next: NextFunction): Promise<void> {

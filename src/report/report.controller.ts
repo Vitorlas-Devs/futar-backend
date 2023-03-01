@@ -1,7 +1,8 @@
-import { Router, Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response, Router } from "express";
+
+import HttpException from "../exceptions/HttpException";
 import IController from "../interfaces/controller.interface";
 import userModel from "../user/user.model";
-import HttpException from "../exceptions/HttpException";
 
 export default class ReportController implements IController {
     public path = "/report";

@@ -1,20 +1,20 @@
 import bcrypt from "bcrypt";
-import { Router, Request, Response, NextFunction } from "express";
-import UserWithThatEmailAlreadyExistsException from "../exceptions/UserWithThatEmailAlreadyExistsException";
-import WrongCredentialsException from "../exceptions/WrongCredentialsException";
-import HttpException from "../exceptions/HttpException";
-import validationMiddleware from "../middleware/validation.middleware";
-import userModel from "./../user/user.model";
-import CreateUserDto from "../user/user.dto";
-import LogInDto from "./logIn.dto";
+import { NextFunction, Request, Response, Router } from "express";
 import { OAuth2Client } from "google-auth-library";
 
+import HttpException from "../exceptions/HttpException";
+import UserWithThatEmailAlreadyExistsException from "../exceptions/UserWithThatEmailAlreadyExistsException";
+import WrongCredentialsException from "../exceptions/WrongCredentialsException";
 import IController from "../interfaces/controller.interface";
 import IGoogleUserInfo from "../interfaces/googleUserInfo.interface";
 import IRequestWithUser from "../interfaces/requestWithUser.interface";
 import ISession from "../interfaces/session.interface";
-import IUser, { exampleUser } from "../user/user.interface";
+import validationMiddleware from "../middleware/validation.middleware";
 import { Route, RouteHandler } from "../types/postman";
+import CreateUserDto from "../user/user.dto";
+import IUser, { exampleUser } from "../user/user.interface";
+import userModel from "./../user/user.model";
+import LogInDto from "./logIn.dto";
 
 export default class AuthenticationController implements IController {
     public path = "/auth";

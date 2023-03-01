@@ -1,15 +1,16 @@
+import MongoStore from "connect-mongo";
 import cookieParser from "cookie-parser";
-import express from "express";
-import mongoose from "mongoose";
 import cors from "cors";
+import { config } from "dotenv";
+import express from "express";
+import session from "express-session";
+import fs from "fs";
+import mongoose from "mongoose";
+import morgan from "morgan";
+
 import IController from "./interfaces/controller.interface";
 import errorMiddleware from "./middleware/error.middleware";
-import session from "express-session";
-import MongoStore from "connect-mongo";
-import morgan from "morgan";
-import { config } from "dotenv";
 import PostmanCollectionCreator from "./postman";
-import fs from "fs";
 
 export default class App {
     public app: express.Application;

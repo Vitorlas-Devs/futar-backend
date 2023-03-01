@@ -1,7 +1,8 @@
+import request from "supertest";
+
 import App from "../../app";
 import AuthenticationController from "../../authentication/authentication.controller";
 import KiszállításController from "../kiszállítás.controller";
-import request from "supertest";
 
 let server: Express.Application;
 let cookie: string | any;
