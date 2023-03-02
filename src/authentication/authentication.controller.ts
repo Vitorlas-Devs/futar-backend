@@ -1,38 +1,28 @@
 import bcrypt from "bcrypt";
-import { NextFunction, Request, Response, Router } from "express";
+import { NextFunction, Request, Response } from "express";
 import { OAuth2Client } from "google-auth-library";
 
+import BaseController from "../base.controller";
 import HttpException from "../exceptions/HttpException";
 import UserWithThatEmailAlreadyExistsException from "../exceptions/UserWithThatEmailAlreadyExistsException";
 import WrongCredentialsException from "../exceptions/WrongCredentialsException";
-import IController from "../interfaces/controller.interface";
 import IGoogleUserInfo from "../interfaces/googleUserInfo.interface";
 import IRequestWithUser from "../interfaces/requestWithUser.interface";
 import ISession from "../interfaces/session.interface";
 import validationMiddleware from "../middleware/validation.middleware";
-import { Route, RouteHandler } from "../types/postman";
+import { Route } from "../types/postman";
 import CreateUserDto from "../user/user.dto";
 import IUser, { exampleUser } from "../user/user.interface";
 import userModel from "./../user/user.model";
 import LogInDto from "./logIn.dto";
 
-export default class AuthenticationController implements IController {
+export default class AuthenticationController extends BaseController {
     public path = "/auth";
-    public router = Router();
     private user = userModel;
 
     constructor() {
+        super();
         this.initializeRoutes();
-    }
-
-    private initializeRoutes() {
-        this.routes.forEach(route => {
-            const routerMethod = route.method as keyof typeof this.router;
-            if (!this.router[routerMethod]) {
-                throw new Error(`Unsupported HTTP method: ${route.method}`);
-            }
-            (<RouteHandler>this.router[routerMethod])(route.path, route.localMiddleware || [], route.handler);
-        });
     }
 
     private registration = async (req: Request, res: Response, next: NextFunction) => {

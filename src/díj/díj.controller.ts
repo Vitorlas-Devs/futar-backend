@@ -1,34 +1,24 @@
-import { NextFunction, Request, Response, Router } from "express";
+import { NextFunction, Request, Response } from "express";
 
+import BaseController from "../base.controller";
 import DíjNotFoundException from "../exceptions/DíjNotFoundException";
 import HttpException from "../exceptions/HttpException";
-import IController from "../interfaces/controller.interface";
 import IRequestWithUser from "../interfaces/requestWithUser.interface";
 import authMiddleware from "../middleware/auth.middleware";
 import roleCheckMiddleware from "../middleware/roleCheckMiddleware";
 import validationMiddleware from "../middleware/validation.middleware";
-import { Route, RouteHandler } from "../types/postman";
+import { Route } from "../types/postman";
 import CreateDíjDto from "./díj.dto";
 import IDíj, { exampleDíj } from "./díj.interface";
 import díjModel from "./díj.model";
 
-export default class DíjController implements IController {
+export default class DíjController extends BaseController {
     public path = "/dij";
-    public router = Router();
     private díj = díjModel;
 
     constructor() {
+        super();
         this.initializeRoutes();
-    }
-
-    private initializeRoutes() {
-        this.routes.forEach(route => {
-            const routerMethod = route.method as keyof typeof this.router;
-            if (!this.router[routerMethod]) {
-                throw new Error(`Unsupported HTTP method: ${route.method}`);
-            }
-            (<RouteHandler>this.router[routerMethod])(route.path, route.localMiddleware, route.handler);
-        });
     }
 
     private getAllDíj = async (req: Request, res: Response, next: NextFunction) => {
