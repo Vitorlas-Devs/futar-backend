@@ -1,0 +1,18 @@
+[
+    {
+        "email": "student001@jedlik.eu",
+        "auto_login": true,
+        "name": "student001",
+        "picture": "none",
+        "password": "$2b$10$XRpgjPnYSMWZO5b8n7TIy.TkNkAGPKoLjhmDPPtVZt46M5lCyUrvy",
+        "roles": ["admin"]
+    },
+	{
+        "email": "student002@jedlik.eu",
+        "auto_login": true,
+        "name": "student002",
+        "picture": "none",
+        "password": "$2a$10$twvuw5hD1Aaebu1Dn6NJoOLg3DStSGKcgI4sx4Y9Y/PMSo1seHr2K",
+        "roles": ["admin"]
+    }
+]
