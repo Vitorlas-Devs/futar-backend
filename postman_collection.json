@@ -22,12 +22,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/dij",
+              "raw": "https://futar.cyclic.app:443/dij",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "dij"
@@ -52,12 +52,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/dij/:id",
+              "raw": "https://futar.cyclic.app:443/dij/:id",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "dij",
@@ -89,12 +89,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/dij/:offset/:limit/:order/:sort/:keyword?",
+              "raw": "https://futar.cyclic.app:443/dij/:offset/:limit/:order/:sort/:keyword?",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "dij",
@@ -150,12 +150,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/dij/:id",
+              "raw": "https://futar.cyclic.app:443/dij/:id",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "dij",
@@ -187,12 +187,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/dij/:id",
+              "raw": "https://futar.cyclic.app:443/dij/:id",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "dij",
@@ -224,12 +224,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/dij",
+              "raw": "https://futar.cyclic.app:443/dij",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "dij"
@@ -259,12 +259,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/kiszallitasok",
+              "raw": "https://futar.cyclic.app:443/kiszallitasok",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "kiszallitasok"
@@ -289,12 +289,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/kiszallitasok/:id",
+              "raw": "https://futar.cyclic.app:443/kiszallitasok/:id",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "kiszallitasok",
@@ -326,12 +326,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/kiszallitasok/:offset/:limit/:order/:sort/:keyword?",
+              "raw": "https://futar.cyclic.app:443/kiszallitasok/:offset/:limit/:order/:sort/:keyword?",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "kiszallitasok",
@@ -387,12 +387,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/kiszallitasok/:id",
+              "raw": "https://futar.cyclic.app:443/kiszallitasok/:id",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "kiszallitasok",
@@ -424,12 +424,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/kiszallitasok/:id",
+              "raw": "https://futar.cyclic.app:443/kiszallitasok/:id",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "kiszallitasok",
@@ -461,12 +461,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/kiszallitasok",
+              "raw": "https://futar.cyclic.app:443/kiszallitasok",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "kiszallitasok"
@@ -496,12 +496,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/users/:id",
+              "raw": "https://futar.cyclic.app:443/users/:id",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "users",
@@ -533,12 +533,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/users",
+              "raw": "https://futar.cyclic.app:443/users",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "users"
@@ -563,12 +563,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/users/:id",
+              "raw": "https://futar.cyclic.app:443/users/:id",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "users",
@@ -600,12 +600,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/users/:id",
+              "raw": "https://futar.cyclic.app:443/users/:id",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "users",
@@ -642,12 +642,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/auth/register",
+              "raw": "https://futar.cyclic.app:443/auth/register",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "auth",
@@ -673,12 +673,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/auth/login",
+              "raw": "https://futar.cyclic.app:443/auth/login",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "auth",
@@ -704,12 +704,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/auth/autologin",
+              "raw": "https://futar.cyclic.app:443/auth/autologin",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "auth",
@@ -735,12 +735,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/auth/closeapp",
+              "raw": "https://futar.cyclic.app:443/auth/closeapp",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "auth",
@@ -766,12 +766,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/auth/logout",
+              "raw": "https://futar.cyclic.app:443/auth/logout",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "auth",
@@ -797,12 +797,12 @@
               }
             },
             "url": {
-              "raw": "https://futar.cyclic.app:80/auth/google",
+              "raw": "https://futar.cyclic.app:443/auth/google",
               "protocol": "https",
               "host": [
                 "futar.cyclic.app"
               ],
-              "port": "80",
+              "port": "443",
               "path": [
                 "",
                 "auth",
