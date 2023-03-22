@@ -22,7 +22,7 @@ export default class App {
         this.initializeMiddlewares();
         this.initializeControllers(controllers);
         this.initializeErrorHandling();
-        // this.createPostmanCollection();
+        this.createPostmanCollection();
     }
 
     public listen(): void {
@@ -105,11 +105,11 @@ export default class App {
         });
     }
 
-    // public createPostmanCollection() {
-    //     if (["development", "test"].includes(process.env.NODE_ENV)) {
-    //         const collectionCreator = new PostmanCollectionCreator();
-    //         fs.writeFileSync("postman_collection.json", collectionCreator.collectionString);
-    //         console.log("Postman collection created");
-    //     }
-    // }
+    public createPostmanCollection() {
+        if (process.env.NODE_ENV == "deployment") return;
+
+        const collectionCreator = new PostmanCollectionCreator();
+        fs.writeFileSync("postman_collection.json", collectionCreator.collectionString);
+        console.log("Postman collection created");
+    }
 }
