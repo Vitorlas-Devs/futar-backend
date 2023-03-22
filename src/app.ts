@@ -22,7 +22,7 @@ export default class App {
         this.initializeMiddlewares();
         this.initializeControllers(controllers);
         this.initializeErrorHandling();
-        this.createPostmanCollection();
+        // this.createPostmanCollection();
     }
 
     public listen(): void {
