@@ -22,10 +22,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/dij",
+              "raw": "https://futar.cyclic.app:80/dij",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -52,10 +52,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/dij/:id",
+              "raw": "https://futar.cyclic.app:80/dij/:id",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -89,10 +89,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/dij/:offset/:limit/:order/:sort/:keyword?",
+              "raw": "https://futar.cyclic.app:80/dij/:offset/:limit/:order/:sort/:keyword?",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -150,10 +150,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/dij/:id",
+              "raw": "https://futar.cyclic.app:80/dij/:id",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -187,10 +187,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/dij/:id",
+              "raw": "https://futar.cyclic.app:80/dij/:id",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -224,10 +224,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/dij",
+              "raw": "https://futar.cyclic.app:80/dij",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -259,10 +259,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/kiszallitasok",
+              "raw": "https://futar.cyclic.app:80/kiszallitasok",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -289,10 +289,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/kiszallitasok/:id",
+              "raw": "https://futar.cyclic.app:80/kiszallitasok/:id",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -326,10 +326,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/kiszallitasok/:offset/:limit/:order/:sort/:keyword?",
+              "raw": "https://futar.cyclic.app:80/kiszallitasok/:offset/:limit/:order/:sort/:keyword?",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -387,10 +387,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/kiszallitasok/:id",
+              "raw": "https://futar.cyclic.app:80/kiszallitasok/:id",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -424,10 +424,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/kiszallitasok/:id",
+              "raw": "https://futar.cyclic.app:80/kiszallitasok/:id",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -461,10 +461,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/kiszallitasok",
+              "raw": "https://futar.cyclic.app:80/kiszallitasok",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -496,10 +496,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/users/:id",
+              "raw": "https://futar.cyclic.app:80/users/:id",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -533,10 +533,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/users",
+              "raw": "https://futar.cyclic.app:80/users",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -563,10 +563,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/users/:id",
+              "raw": "https://futar.cyclic.app:80/users/:id",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -600,10 +600,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/users/:id",
+              "raw": "https://futar.cyclic.app:80/users/:id",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -642,10 +642,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/auth/register",
+              "raw": "https://futar.cyclic.app:80/auth/register",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -673,10 +673,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/auth/login",
+              "raw": "https://futar.cyclic.app:80/auth/login",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -704,10 +704,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/auth/autologin",
+              "raw": "https://futar.cyclic.app:80/auth/autologin",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -735,10 +735,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/auth/closeapp",
+              "raw": "https://futar.cyclic.app:80/auth/closeapp",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -766,10 +766,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/auth/logout",
+              "raw": "https://futar.cyclic.app:80/auth/logout",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
@@ -797,10 +797,10 @@
               }
             },
             "url": {
-              "raw": "https://long-red-chick-kit.cyclic.app:80/auth/google",
+              "raw": "https://futar.cyclic.app:80/auth/google",
               "protocol": "https",
               "host": [
-                "long-red-chick-kit.cyclic.app"
+                "futar.cyclic.app"
               ],
               "port": "80",
               "path": [
