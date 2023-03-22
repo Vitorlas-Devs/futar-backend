@@ -106,8 +106,10 @@ export default class App {
     }
 
     public createPostmanCollection() {
-        const collectionCreator = new PostmanCollectionCreator();
-        fs.writeFileSync("postman_collection.json", collectionCreator.collectionString);
-        console.log("Postman collection created");
+        if (["development", "test"].includes(process.env.NODE_ENV)) {
+            const collectionCreator = new PostmanCollectionCreator();
+            fs.writeFileSync("postman_collection.json", collectionCreator.collectionString);
+            console.log("Postman collection created");
+        }
     }
 }
